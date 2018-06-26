@@ -2,10 +2,10 @@
 /**
  * This file is part of Swoft.
  *
- * @link https://swoft.org
+ * @link     https://swoft.org
  * @document https://doc.swoft.org
- * @contact group@swoft.org
- * @license https://github.com/swoft-cloud/swoft/blob/master/LICENSE
+ * @contact  group@swoft.org
+ * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
  */
 
 namespace Swoft\Test\Cases;
@@ -26,7 +26,9 @@ use Swoft\Http\Message\Testing\Web\Response;
 class AbstractTestCase extends TestCase
 {
     const ACCEPT_VIEW = 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8';
+
     const ACCEPT_JSON = 'application/json';
+
     const ACCEPT_RAW = 'text/plain';
 
     /**
