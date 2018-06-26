@@ -1,0 +1,39 @@
+<?php
+/**
+ * This file is part of Swoft.
+ *
+ * @link     https://swoft.org
+ * @document https://doc.swoft.org
+ * @contact  group@swoft.org
+ * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
+ */
+
+return [
+    'serverDispatcher' => [
+        'middlewares' => [
+            \Swoft\View\Middleware\ViewMiddleware::class,
+            // \Swoft\Devtool\Middleware\DevToolMiddleware::class,
+            // \Swoft\Session\Middleware\SessionMiddleware::class,
+        ]
+    ],
+    'httpRouter'       => [
+        'ignoreLastSlash'  => false,
+        'tmpCacheNumber' => 1000,
+        'matchAll'       => '',
+    ],
+    'requestParser'    => [
+        'parsers' => [
+
+        ],
+    ],
+    'view'             => [
+        'viewsPath' => '@resources/views/',
+    ],
+    'cache'            => [
+        'driver' => 'redis',
+    ],
+    'demoRedis' => [
+        'class' => \Swoft\Redis\Redis::class,
+        'poolName' => 'demoRedis'
+    ]
+];
