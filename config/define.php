@@ -31,3 +31,5 @@ $aliases = [
 ];
 
 \Swoft\App::setAliases($aliases);
+
+(new \Dotenv\Dotenv(BASE_PATH))->load();
