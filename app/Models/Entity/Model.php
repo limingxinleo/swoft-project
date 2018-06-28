@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 namespace App\Models\Entity;
 
-use Swoft\Db\Model as SwoftModel;
+use Xin\Swoft\Db\Model as SwoftModel;
 
 class Model extends SwoftModel
 {

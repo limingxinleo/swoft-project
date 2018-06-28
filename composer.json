@@ -30,7 +30,8 @@
         "swoft/process": "^1.0",
         "swoft/memory": "^1.0",
         "swoft/service-governance": "^1.0",
-        "limingxinleo/swoft-trait-instance": "^1.0"
+        "limingxinleo/swoft-trait-instance": "^1.0",
+        "limingxinleo/swoft-db-model": "^1.0"
     },
     "require-dev": {
         "eaglewu/swoole-ide-helper": "dev-master",
@@ -55,10 +56,10 @@
         ],
         "test": "./vendor/bin/phpunit -c phpunit.xml"
     },
-    "repositories":  {
-      "packagist": {
-        "type": "composer",
-        "url": "https://packagist.phpcomposer.com"
-      }
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
     }
 }
