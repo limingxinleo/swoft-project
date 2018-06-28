@@ -9,24 +9,20 @@
  */
 
 return [
-    'redis'     => [
-        'name'        => 'redis',
-        'uri'         => [
+    'redis' => [
+        'name' => 'redis',
+        'uri' => [
             '127.0.0.1:6379',
             '127.0.0.1:6379',
         ],
-        'minActive'   => 8,
-        'maxActive'   => 8,
-        'maxWait'     => 8,
+        'minActive' => 8,
+        'maxActive' => 8,
+        'maxWait' => 8,
         'maxWaitTime' => 3,
         'maxIdleTime' => 60,
-        'timeout'     => 8,
-        'db'          => 1,
-        'prefix'      => 'redis_',
-        'serialize'   => 0,
-    ],
-    'demoRedis' => [
-        'db'     => 2,
-        'prefix' => 'demo_redis_',
+        'timeout' => 8,
+        'db' => 1,
+        'prefix' => 'redis_',
+        'serialize' => 0,
     ],
 ];

@@ -16,24 +16,20 @@ return [
             // \Swoft\Session\Middleware\SessionMiddleware::class,
         ]
     ],
-    'httpRouter'       => [
-        'ignoreLastSlash'  => false,
+    'httpRouter' => [
+        'ignoreLastSlash' => false,
         'tmpCacheNumber' => 1000,
-        'matchAll'       => '',
+        'matchAll' => '',
     ],
-    'requestParser'    => [
+    'requestParser' => [
         'parsers' => [
 
         ],
     ],
-    'view'             => [
+    'view' => [
         'viewsPath' => '@resources/views/',
     ],
-    'cache'            => [
+    'cache' => [
         'driver' => 'redis',
     ],
-    'demoRedis' => [
-        'class' => \Swoft\Redis\Redis::class,
-        'poolName' => 'demoRedis'
-    ]
 ];

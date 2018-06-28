@@ -9,13 +9,13 @@
  */
 
 return [
-    'version'      => '1.0',
+    'version' => '1.0',
     'autoInitBean' => true,
-    'bootScan'     => [
+    'bootScan' => [
         'App\Commands',
         'App\Boot',
     ],
-    'beanScan'     => [
+    'beanScan' => [
         'App\Controllers',
         'App\Models',
         'App\Middlewares',
@@ -29,13 +29,13 @@ return [
         'App\Fallback',
         'App\WebSocket',
     ],
-    'I18n'         => [
+    'I18n' => [
         'sourceLanguage' => '@root/resources/messages/',
     ],
-    'env'          => 'Base',
-    'db'           => require __DIR__ . DS . 'db.php',
-    'cache'        => require __DIR__ . DS . 'cache.php',
-    'service'      => require __DIR__ . DS . 'service.php',
-    'breaker'      => require __DIR__ . DS . 'breaker.php',
-    'provider'      => require __DIR__ . DS . 'provider.php',
+    'env' => 'Base',
+    'db' => require __DIR__ . DS . 'db.php',
+    'cache' => require __DIR__ . DS . 'cache.php',
+    'service' => require __DIR__ . DS . 'service.php',
+    'breaker' => require __DIR__ . DS . 'breaker.php',
+    'provider' => require __DIR__ . DS . 'provider.php',
 ];
