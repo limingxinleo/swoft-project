@@ -31,10 +31,11 @@
         "swoft/memory": "^1.0",
         "swoft/service-governance": "^1.0",
         "limingxinleo/swoft-trait-instance": "^1.0",
-        "limingxinleo/swoft-db-model": "^1.0"
+        "limingxinleo/swoft-db-model": "^1.0",
+        "limingxinleo/x-phalcon-enum": "^1.1"
     },
     "require-dev": {
-        "eaglewu/swoole-ide-helper": "dev-master",
+        "swoft/swoole-ide-helper": "dev-master",
         "phpunit/phpunit": "^5.7"
     },
     "autoload": {

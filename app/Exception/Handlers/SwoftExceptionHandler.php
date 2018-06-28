@@ -8,7 +8,7 @@
  * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
  */
 
-namespace App\Exception;
+namespace App\Exception\Handlers;
 
 use Swoft\App;
 use Swoft\Bean\Annotation\ExceptionHandler;
@@ -43,9 +43,9 @@ class SwoftExceptionHandler
      */
     public function handlerException(Response $response, \Throwable $throwable)
     {
-        $file      = $throwable->getFile();
-        $line      = $throwable->getLine();
-        $code      = $throwable->getCode();
+        $file = $throwable->getFile();
+        $line = $throwable->getLine();
+        $code = $throwable->getCode();
         $exception = $throwable->getMessage();
 
         $data = ['msg' => $exception, 'file' => $file, 'line' => $line, 'code' => $code];
@@ -63,8 +63,8 @@ class SwoftExceptionHandler
      */
     public function handlerRuntimeException(Response $response, \Throwable $throwable)
     {
-        $file      = $throwable->getFile();
-        $code      = $throwable->getCode();
+        $file = $throwable->getFile();
+        $code = $throwable->getCode();
         $exception = $throwable->getMessage();
 
         return $response->json([$exception, 'runtimeException']);
@@ -111,7 +111,7 @@ class SwoftExceptionHandler
      */
     public function handlerViewException(Request $request, Response $response, \Throwable $throwable)
     {
-        $name  = $throwable->getMessage(). $request->getUri()->getPath();
+        $name = $throwable->getMessage() . $request->getUri()->getPath();
         $notes = [
             'New Generation of PHP Framework',
             'Hign Performance, Coroutine and Full Stack',
@@ -138,7 +138,7 @@ class SwoftExceptionHandler
                 'link' => 'https://github.com/swoft-cloud/swoft',
             ],
         ];
-        $data  = compact('name', 'notes', 'links');
+        $data = compact('name', 'notes', 'links');
 
         return view('index/index', $data);
     }
