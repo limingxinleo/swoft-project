@@ -7,7 +7,6 @@
  * @contact  group@swoft.org
  * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
  */
-
 return [
     'server' => [
         'pfile' => env('PFILE', '/tmp/swoft.pid'),
@@ -23,6 +22,7 @@ return [
         'type' => env('TCP_TYPE', SWOOLE_SOCK_TCP),
         'package_max_length' => env('TCP_PACKAGE_MAX_LENGTH', 2048),
         'open_eof_check' => env('TCP_OPEN_EOF_CHECK', false),
+        'package_eof' => "\r\n",
     ],
     'http' => [
         'host' => env('HTTP_HOST', '0.0.0.0'),
@@ -54,7 +54,7 @@ return [
         'open_http2_protocol' => env('OPEN_HTTP2_PROTOCOL', false),
         'ssl_cert_file' => env('SSL_CERT_FILE', ''),
         'ssl_key_file' => env('SSL_KEY_FILE', ''),
-        'task_ipc_mode' => env('TASK_IPC_MODE', 2),
+        'task_ipc_mode' => env('TASK_IPC_MODE', 1),
         'message_queue_key' => env('MESSAGE_QUEUE_KEY', 0x70001001),
         'task_tmpdir' => env('TASK_TMPDIR', '/tmp'),
     ],
