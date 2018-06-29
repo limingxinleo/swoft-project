@@ -1,11 +1,10 @@
 <?php
-/**
+
+/*
  * This file is part of Swoft.
- *
- * @link     https://swoft.org
- * @document https://doc.swoft.org
- * @contact  group@swoft.org
- * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
+ * (c) Swoft <group@swoft.org>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 !defined('DS') && define('DS', DIRECTORY_SEPARATOR);
