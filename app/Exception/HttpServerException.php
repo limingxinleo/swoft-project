@@ -9,14 +9,14 @@
 namespace App\Exception;
 
 use App\Core\Constants\ErrorCode;
-use Exception;
+use Swoft\Http\Server\Exception\HttpException;
 use Throwable;
 
 /**
  * Class HttpServerException
  * @package App\Exception
  */
-class HttpServerException extends Exception implements ExceptionInterface
+class HttpServerException extends HttpException implements ExceptionInterface
 {
     public function __construct($code = 0, $message = null, Throwable $previous = null)
     {

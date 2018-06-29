@@ -19,7 +19,6 @@ use Swoft\View\Bean\Annotation\View;
 use Swoft\Http\Message\Server\Response;
 use Swoft\Http\Message\Server\Request;
 use App\Core\Constants\ErrorCode;
-use App\Exception\HttpServerException;
 
 /**
  * Class IndexController
