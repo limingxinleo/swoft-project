@@ -10,7 +10,9 @@
 
 namespace App\Exception\Handlers;
 
+use App\Core\Constants\ErrorCode;
 use Swoft\App;
+use Swoft\Bean\Annotation\Inject;
 use Swoft\Bean\Annotation\ExceptionHandler;
 use Swoft\Bean\Annotation\Handler;
 use Swoft\Exception\RuntimeException;
@@ -34,6 +36,14 @@ use Swoft\Http\Server\Exception\BadRequestException;
 class SwoftExceptionHandler
 {
     /**
+     * 注入自定义Response
+     * @Inject()
+     *
+     * @var \App\Core\HttpServer\Response
+     */
+    private $response;
+
+    /**
      * @Handler(Exception::class)
      *
      * @param Response   $response
@@ -50,7 +60,7 @@ class SwoftExceptionHandler
 
         $data = ['msg' => $exception, 'file' => $file, 'line' => $line, 'code' => $code];
         App::error(json_encode($data));
-        return $response->json($data);
+        return $this->response->fail(ErrorCode::SERVER_ERROR, $exception);
     }
 
     /**
@@ -67,7 +77,7 @@ class SwoftExceptionHandler
         $code = $throwable->getCode();
         $exception = $throwable->getMessage();
 
-        return $response->json([$exception, 'runtimeException']);
+        return $this->response->fail(ErrorCode::SERVER_ERROR, $exception);
     }
 
     /**
@@ -80,9 +90,10 @@ class SwoftExceptionHandler
      */
     public function handlerValidatorException(Response $response, \Throwable $throwable)
     {
+        $code = $throwable->getCode();
         $exception = $throwable->getMessage();
 
-        return $response->json(['message' => $exception]);
+        return $this->response->fail(ErrorCode::VALIDATE_FAIL, $exception);
     }
 
     /**
@@ -95,9 +106,10 @@ class SwoftExceptionHandler
      */
     public function handlerBadRequestException(Response $response, \Throwable $throwable)
     {
+        $code = $throwable->getCode();
         $exception = $throwable->getMessage();
 
-        return $response->json(['message' => $exception]);
+        return $this->response->fail($code, $exception);
     }
 
     /**

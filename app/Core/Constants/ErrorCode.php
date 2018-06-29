@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace App\Constants;
+namespace App\Core\Constants;
 
 use Xin\Phalcon\Enum\Enum;
 
@@ -16,8 +16,12 @@ use Xin\Phalcon\Enum\Enum;
  */
 class ErrorCode extends Enum
 {
+    const SERVER_ERROR = 500;
+
+    const VALIDATE_FAIL = 600;
+
     /**
      * @Message('参数错误')
      */
-    public static $ENUM_PARAMS_ERROR = 400;
+    public static $ENUM_PARAMS_ERROR = 1000;
 }

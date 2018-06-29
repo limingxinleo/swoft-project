@@ -10,17 +10,16 @@
 
 namespace App\Controllers;
 
-use App\Constants\ErrorCode;
-use App\Exception\HttpServerException;
 use Swoft\App;
 use Swoft\Http\Server\Bean\Annotation\Controller;
 use Swoft\Http\Server\Bean\Annotation\RequestMapping;
 use Swoft\Http\Server\Bean\Annotation\RequestMethod;
-
+use Swoft\Bean\Annotation\Inject;
 use Swoft\View\Bean\Annotation\View;
 use Swoft\Http\Message\Server\Response;
 use Swoft\Http\Message\Server\Request;
-use App\Utils\Response as ResponseUtil;
+use App\Core\Constants\ErrorCode;
+use App\Exception\HttpServerException;
 
 /**
  * Class IndexController
@@ -29,6 +28,14 @@ use App\Utils\Response as ResponseUtil;
  */
 class IndexController
 {
+    /**
+     * 注入自定义Response
+     * @Inject()
+     *
+     * @var \App\Core\HttpServer\Response
+     */
+    private $response;
+
     /**
      * @RequestMapping(route="/", method={RequestMethod::GET,RequestMethod::POST})
      */
@@ -52,7 +59,7 @@ class IndexController
         $data = compact('name', 'notes', 'links');
 
         if ($request->getMethod() === 'POST') {
-            return ResponseUtil::success($data);
+            return $this->response->success($data);
         }
         return view('index/index', $data);
     }

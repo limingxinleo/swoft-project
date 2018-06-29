@@ -8,10 +8,14 @@
 // +----------------------------------------------------------------------
 namespace App\Exception;
 
-use App\Constants\ErrorCode;
+use App\Core\Constants\ErrorCode;
 use Exception;
 use Throwable;
 
+/**
+ * Class HttpServerException
+ * @package App\Exception
+ */
 class HttpServerException extends Exception implements ExceptionInterface
 {
     public function __construct($code = 0, $message = null, Throwable $previous = null)

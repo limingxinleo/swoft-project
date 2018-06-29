@@ -10,7 +10,9 @@
 
 namespace App\Exception\Handlers;
 
+use App\Core\Constants\ErrorCode;
 use Swoft\App;
+use Swoft\Bean\Annotation\Inject;
 use Swoft\Bean\Annotation\ExceptionHandler;
 use Swoft\Bean\Annotation\Handler;
 use Swoft\Http\Message\Server\Response;
@@ -29,6 +31,14 @@ use App\Exception\HttpServerException;
 class HttpServerExceptionHandler
 {
     /**
+     * 注入自定义Response
+     * @Inject()
+     *
+     * @var \App\Core\HttpServer\Response
+     */
+    private $response;
+
+    /**
      * @Handler(HttpServerException::class)
      *
      * @param Response   $response
@@ -43,8 +53,8 @@ class HttpServerExceptionHandler
         $code = $throwable->getCode();
         $exception = $throwable->getMessage();
 
-        $data = ['msg' => $exception, 'file' => $file, 'line' => $line, 'code' => $code, 'biz' => true];
+        $data = ['msg' => $exception, 'file' => $file, 'line' => $line, 'code' => $code];
         App::error(json_encode($data));
-        return $response->json($data);
+        return $this->response->fail($code, $exception);
     }
 }
