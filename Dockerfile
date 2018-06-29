@@ -69,6 +69,6 @@ RUN composer install --no-dev \
     && composer dump-autoload -o \
     && composer clearcache
 
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["php", "/var/www/swoft/bin/swoft", "start"]
