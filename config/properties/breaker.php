@@ -10,8 +10,8 @@
 
 return [
     'user' => [
-        'failCount'    => 3,
+        'failCount' => 3,
         'successCount' => 3,
-        'delayTime'    => 500,
+        'delayTime' => 500,
     ],
 ];
