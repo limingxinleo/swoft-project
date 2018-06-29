@@ -14,7 +14,6 @@ use Swoft\App;
 use Swoft\Http\Server\Bean\Annotation\Controller;
 use Swoft\Http\Server\Bean\Annotation\RequestMapping;
 use Swoft\Http\Server\Bean\Annotation\RequestMethod;
-use Swoft\Bean\Annotation\Inject;
 use Swoft\View\Bean\Annotation\View;
 use Swoft\Http\Message\Server\Response;
 use Swoft\Http\Message\Server\Request;
@@ -25,16 +24,8 @@ use App\Core\Constants\ErrorCode;
  * @Controller
  * @package App\Controllers
  */
-class IndexController
+class IndexController extends BaseController
 {
-    /**
-     * 注入自定义Response
-     * @Inject()
-     *
-     * @var \App\Core\HttpServer\Response
-     */
-    private $response;
-
     /**
      * @RequestMapping(route="/", method={RequestMethod::GET,RequestMethod::POST})
      */
