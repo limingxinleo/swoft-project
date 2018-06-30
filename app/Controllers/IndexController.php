@@ -31,22 +31,7 @@ class IndexController extends BaseController
      */
     public function index(Request $request): Response
     {
-        $name = 'Swoft Framework';
-        $notes = [
-            'New Generation of PHP Framework',
-            'Hign Performance, Coroutine and Full Stack'
-        ];
-        $links = [
-            [
-                'name' => 'Home',
-                'link' => 'http://www.swoft.org',
-            ],
-            [
-                'name' => 'Documentation',
-                'link' => 'http://doc.swoft.org',
-            ]
-        ];
-        $data = compact('name', 'notes', 'links');
+        $data = config('message');
 
         if ($request->getMethod() === 'POST') {
             return $this->response->success($data);
