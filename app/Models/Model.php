@@ -8,7 +8,7 @@
  * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
  */
 
-namespace App\Models\Entity;
+namespace App\Models;
 
 use Swoft\Db\Model as SwoftModel;
 
