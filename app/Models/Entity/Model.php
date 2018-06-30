@@ -7,9 +7,10 @@
  * @contact  group@swoft.org
  * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
  */
+
 namespace App\Models\Entity;
 
-use Xin\Swoft\Db\Model as SwoftModel;
+use Swoft\Db\Model as SwoftModel;
 
 class Model extends SwoftModel
 {
