@@ -9,7 +9,7 @@
  */
 
 return [
-    'user' => [
+    'default' => [
         'failCount' => 3,
         'successCount' => 3,
         'delayTime' => 500,
