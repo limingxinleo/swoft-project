@@ -9,8 +9,8 @@
  */
 
 return [
-    'user' => [
-        'name' => 'redis',
+    'default' => [
+        'name' => 'default',
         'uri' => [
             '127.0.0.1:8099',
             '127.0.0.1:8099',
