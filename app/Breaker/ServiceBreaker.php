@@ -19,7 +19,7 @@ use Swoft\Sg\Circuit\CircuitBreaker;
  *
  * @Breaker("default")
  */
-class DefaultBreaker extends CircuitBreaker
+class ServiceBreaker extends CircuitBreaker
 {
     /**
      * The number of successive failures
