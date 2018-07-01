@@ -21,16 +21,17 @@ before_install:
   - export PHP_MINOR="$(`phpenv which php` -r 'echo phpversion();' | cut -d '.' -f 2)"
   - echo $PHP_MAJOR
   - echo $PHP_MINOR
-  - bash test/_ci/setup_dbs.sh
 
 install:
+  - cd $TRAVIS_BUILD_DIR
+  - git checkout test
   - wget https://github.com/redis/hiredis/archive/v0.13.3.tar.gz -O hiredis.tar.gz && mkdir -p hiredis && tar -xf hiredis.tar.gz -C hiredis --strip-components=1 && cd hiredis && sudo make -j$(nproc) && sudo make install && sudo ldconfig && cd ..
   - pecl install -f swoole
   - phpenv config-rm xdebug.ini
+  - bash test/_ci/setup_dbs.sh
 
 before_script:
   - cd $TRAVIS_BUILD_DIR
-  - git checkout test
   - composer install --prefer-dist --optimize-autoloader
   - cp .env.example .env
   - bin/swoft app:init
