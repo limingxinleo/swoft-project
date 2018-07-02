@@ -24,7 +24,7 @@ class ServiceBreaker extends CircuitBreaker
     /**
      * @var string 服务名称
      */
-    public $serviceName = "breakerService";
+    public $serviceName = 'breakerService';
 
     /**
      * The number of successive failures

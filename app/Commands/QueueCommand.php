@@ -2,10 +2,10 @@
 /**
  * This file is part of Swoft.
  *
- * @link    https://swoft.org
+ * @link     https://swoft.org
  * @document https://doc.swoft.org
- * @contact group@swoft.org
- * @license https://github.com/swoft-cloud/swoft/blob/master/LICENSE
+ * @contact  group@swoft.org
+ * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
  */
 
 namespace App\Commands;
@@ -32,9 +32,8 @@ class QueueCommand
      */
     public function handle(Input $input, Output $output): int
     {
-        $queue = bean(Queue::class);
-        $output->writeln($queue->sss);
-
+        $queue = Queue::instance();
+        $queue->run();
         return 0;
     }
 }
