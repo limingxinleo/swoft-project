@@ -29,4 +29,5 @@ return [
     'breaker' => require __DIR__ . DS . 'breaker.php',
     'provider' => require __DIR__ . DS . 'provider.php',
     'message' => require __DIR__ . DS . 'message.php',
+    'queue' => require __DIR__ . DS . 'queue.php',
 ];
