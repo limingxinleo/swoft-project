@@ -21,8 +21,8 @@ return [
         'maxWaitTime' => 3,
         'maxIdleTime' => 60,
         'timeout' => 8,
-        'db' => 1,
-        'prefix' => 'redis_',
+        'db' => 0,
+        'prefix' => '',
         'serialize' => 0,
     ],
 ];
