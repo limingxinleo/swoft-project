@@ -29,7 +29,7 @@ class Response
      * @param array $data
      * @return HttpServerResponse
      */
-    public function success($data = []): HttpServerResponse
+    public function success($data = null): HttpServerResponse
     {
         $response = RequestContext::getResponse();
         return $response->json([
