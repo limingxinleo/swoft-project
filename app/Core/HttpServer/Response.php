@@ -10,6 +10,7 @@
 
 namespace App\Core\HttpServer;
 
+use App\Core\Constants\ErrorCode;
 use Swoft\Bean\Annotation\Bean;
 use Swoft\Core\RequestContext;
 use Swoft\Http\Message\Server\Response as HttpServerResponse;
@@ -32,7 +33,7 @@ class Response
     {
         $response = RequestContext::getResponse();
         return $response->json([
-            'code' => 0,
+            'code' => ErrorCode::SUCCESS,
             'data' => $data
         ]);
     }
