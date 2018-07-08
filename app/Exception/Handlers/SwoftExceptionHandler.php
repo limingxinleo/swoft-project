@@ -11,6 +11,7 @@
 namespace App\Exception\Handlers;
 
 use App\Core\Constants\ErrorCode;
+use App\Core\Logger\ThrowableLogger;
 use Swoft\App;
 use Swoft\Bean\Annotation\Inject;
 use Swoft\Bean\Annotation\ExceptionHandler;
@@ -44,6 +45,12 @@ class SwoftExceptionHandler
     private $response;
 
     /**
+     * @Inject
+     * @var ThrowableLogger
+     */
+    private $logger;
+
+    /**
      * @Handler(Exception::class)
      *
      * @param Response   $response
@@ -58,8 +65,8 @@ class SwoftExceptionHandler
         $code = $throwable->getCode();
         $exception = $throwable->getMessage();
 
-        $data = ['msg' => $exception, 'file' => $file, 'line' => $line, 'code' => $code];
-        App::error(json_encode($data));
+        $this->logger->error($throwable);
+
         return $this->response->fail(ErrorCode::SERVER_ERROR, $exception);
     }
 
@@ -77,6 +84,8 @@ class SwoftExceptionHandler
         $code = $throwable->getCode();
         $exception = $throwable->getMessage();
 
+        $this->logger->error($throwable);
+
         return $this->response->fail(ErrorCode::SERVER_ERROR, $exception);
     }
 
@@ -93,6 +102,8 @@ class SwoftExceptionHandler
         $code = $throwable->getCode();
         $exception = $throwable->getMessage();
 
+        $this->logger->warning($throwable);
+
         return $this->response->fail(ErrorCode::VALIDATE_FAIL, $exception);
     }
 
@@ -108,6 +119,8 @@ class SwoftExceptionHandler
     {
         $code = $throwable->getCode();
         $exception = $throwable->getMessage();
+
+        $this->logger->warning($throwable);
 
         return $this->response->fail($code, $exception);
     }

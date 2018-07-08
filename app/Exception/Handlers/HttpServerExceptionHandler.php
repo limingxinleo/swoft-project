@@ -10,6 +10,7 @@
 
 namespace App\Exception\Handlers;
 
+use App\Core\Logger\ThrowableLogger;
 use Swoft\App;
 use Swoft\Bean\Annotation\Inject;
 use Swoft\Bean\Annotation\ExceptionHandler;
@@ -38,6 +39,12 @@ class HttpServerExceptionHandler
     private $response;
 
     /**
+     * @Inject
+     * @var ThrowableLogger
+     */
+    private $logger;
+
+    /**
      * @Handler(HttpServerException::class)
      *
      * @param Response   $response
@@ -52,8 +59,8 @@ class HttpServerExceptionHandler
         $code = $throwable->getCode();
         $exception = $throwable->getMessage();
 
-        $data = ['msg' => $exception, 'file' => $file, 'line' => $line, 'code' => $code];
-        App::error(json_encode($data));
+        $this->logger->warning($throwable);
+
         return $this->response->fail($code, $exception);
     }
 }
