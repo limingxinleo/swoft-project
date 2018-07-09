@@ -6,7 +6,7 @@
 
 [![Latest Version](https://img.shields.io/badge/beta-v1.0.0-green.svg?maxAge=2592000)](https://github.com/swoft-cloud/swoft/releases)
 [![Build Status](https://travis-ci.org/swoft-cloud/swoft.svg?branch=master)](https://travis-ci.org/swoft-cloud/swoft)
-[![Build Status](https://travis-ci.org/limingxinleo/swoft-project.svg?branch=test)](https://travis-ci.org/limingxinleo/swoft-project)
+[![Build Status](https://travis-ci.org/limingxinleo/swoft-project-test.svg?branch=master)](https://travis-ci.org/limingxinleo/swoft-project-test)
 [![Php Version](https://img.shields.io/badge/php-%3E=7.0-brightgreen.svg?maxAge=2592000)](https://secure.php.net/)
 [![Swoole Version](https://img.shields.io/badge/swoole-%3E=2.1.1-brightgreen.svg?maxAge=2592000)](https://github.com/swoole/swoole-src)
 [![Hiredis Version](https://img.shields.io/badge/hiredis-%3E=0.1-brightgreen.svg?maxAge=2592000)](https://github.com/redis/hiredis)
