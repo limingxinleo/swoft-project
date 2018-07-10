@@ -11,7 +11,7 @@ use Swoft\Bean\Annotation\Inject;
 /**
  * Class Logger
  * @Bean
- * @package App\Core\Helpers
+ * @package App\Core\Logger
  */
 class ThrowableLogger
 {
@@ -29,7 +29,15 @@ class ThrowableLogger
      */
     protected function format(Throwable $throwable): string
     {
-        return (string)$throwable;
+        return sprintf(
+            "%s:%s(%s) in %s:%s\nStack trace:\n%s",
+            get_class($throwable),
+            $throwable->getMessage(),
+            $throwable->getCode(),
+            $throwable->getFile(),
+            $throwable->getLine(),
+            $throwable->getTraceAsString()
+        );
     }
 
     public function __call($name, $arguments)
