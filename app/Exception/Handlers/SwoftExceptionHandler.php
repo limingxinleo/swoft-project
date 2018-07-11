@@ -23,6 +23,7 @@ use Swoft\Exception\BadMethodCallException;
 use Swoft\Exception\ValidatorException;
 use Swoft\Http\Server\Exception\BadRequestException;
 use Swoft\Http\Server\Exception\NotAcceptableException;
+use Swoft\Http\Server\Exception\RouteNotFoundException;
 
 /**
  * the handler of global exception
@@ -134,6 +135,24 @@ class SwoftExceptionHandler
      * @return Response
      */
     public function handlerNotAcceptableException(Response $response, \Throwable $throwable)
+    {
+        $code = $throwable->getCode();
+        $exception = $throwable->getMessage();
+
+        $this->logger->notice($throwable);
+
+        return $this->response->fail($code, $exception);
+    }
+
+    /**
+     * @Handler(RouteNotFoundException::class)
+     *
+     * @param Response   $response
+     * @param \Throwable $throwable
+     *
+     * @return Response
+     */
+    public function handlerRouteNotFoundException(Response $response, \Throwable $throwable)
     {
         $code = $throwable->getCode();
         $exception = $throwable->getMessage();
