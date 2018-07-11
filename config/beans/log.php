@@ -9,15 +9,30 @@
  */
 
 return [
+    'debugHandler' => [
+        'class' => \Swoft\Log\FileHandler::class,
+        'logFile' => '@runtime/logs/debug.log',
+        'formatter' => '${lineFormatter}',
+        'levels' => [
+            \Swoft\Log\Logger::INFO,
+            \Swoft\Log\Logger::DEBUG,
+            \Swoft\Log\Logger::TRACE,
+        ],
+    ],
+    'traceHandler' => [
+        'class' => \Swoft\Log\FileHandler::class,
+        'logFile' => '@runtime/logs/trace.log',
+        'formatter' => '${lineFormatter}',
+        'levels' => [
+            \Swoft\Log\Logger::TRACE,
+        ],
+    ],
     'noticeHandler' => [
         'class' => \Swoft\Log\FileHandler::class,
         'logFile' => '@runtime/logs/notice.log',
         'formatter' => '${lineFormatter}',
         'levels' => [
             \Swoft\Log\Logger::NOTICE,
-            \Swoft\Log\Logger::INFO,
-            \Swoft\Log\Logger::DEBUG,
-            \Swoft\Log\Logger::TRACE,
         ],
     ],
     'applicationHandler' => [
@@ -25,8 +40,11 @@ return [
         'logFile' => '@runtime/logs/error.log',
         'formatter' => '${lineFormatter}',
         'levels' => [
-            \Swoft\Log\Logger::ERROR,
             \Swoft\Log\Logger::WARNING,
+            \Swoft\Log\Logger::ERROR,
+            \Swoft\Log\Logger::CRITICAL,
+            \Swoft\Log\Logger::ALERT,
+            \Swoft\Log\Logger::EMERGENCY,
         ],
     ],
     'logger' => [
@@ -37,6 +55,8 @@ return [
         'handlers' => [
             '${noticeHandler}',
             '${applicationHandler}',
+            '${debugHandler}',
+            '${traceHandler}',
         ],
     ],
     'lineFormatter' => [

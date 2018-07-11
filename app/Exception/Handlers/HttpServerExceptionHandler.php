@@ -11,7 +11,6 @@
 namespace App\Exception\Handlers;
 
 use App\Core\Logger\ThrowableLogger;
-use Swoft\App;
 use Swoft\Bean\Annotation\Inject;
 use Swoft\Bean\Annotation\ExceptionHandler;
 use Swoft\Bean\Annotation\Handler;

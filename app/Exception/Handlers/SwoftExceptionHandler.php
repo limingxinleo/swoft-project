@@ -12,17 +12,17 @@ namespace App\Exception\Handlers;
 
 use App\Core\Constants\ErrorCode;
 use App\Core\Logger\ThrowableLogger;
-use Swoft\App;
-use Swoft\Bean\Annotation\Inject;
-use Swoft\Bean\Annotation\ExceptionHandler;
 use Swoft\Bean\Annotation\Handler;
-use Swoft\Exception\RuntimeException;
-use Exception;
 use Swoft\Http\Message\Server\Request;
 use Swoft\Http\Message\Server\Response;
+use Swoft\Bean\Annotation\Inject;
+use Swoft\Bean\Annotation\ExceptionHandler;
+use Swoft\Exception\RuntimeException;
+use Exception;
 use Swoft\Exception\BadMethodCallException;
 use Swoft\Exception\ValidatorException;
 use Swoft\Http\Server\Exception\BadRequestException;
+use Swoft\Http\Server\Exception\NotAcceptableException;
 
 /**
  * the handler of global exception
@@ -121,6 +121,24 @@ class SwoftExceptionHandler
         $exception = $throwable->getMessage();
 
         $this->logger->warning($throwable);
+
+        return $this->response->fail($code, $exception);
+    }
+
+    /**
+     * @Handler(NotAcceptableException::class)
+     *
+     * @param Response   $response
+     * @param \Throwable $throwable
+     *
+     * @return Response
+     */
+    public function handlerNotAcceptableException(Response $response, \Throwable $throwable)
+    {
+        $code = $throwable->getCode();
+        $exception = $throwable->getMessage();
+
+        $this->logger->notice($throwable);
 
         return $this->response->fail($code, $exception);
     }
