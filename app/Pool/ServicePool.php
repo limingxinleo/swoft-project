@@ -18,7 +18,7 @@ use Swoft\Rpc\Client\Pool\ServicePool as SwoftServicePool;
 /**
  * the pool of user service
  *
- * @Pool(name="default")
+ * @Pool(name="service")
  */
 class ServicePool extends SwoftServicePool
 {
