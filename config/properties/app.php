@@ -26,7 +26,7 @@ return [
     'devtool' => [
         'enable' => false,
         'logEventToConsole' => false,
-        'logHttpRequestToConsole' => true,
+        'logHttpRequestToConsole' => false,
     ],
     'db' => require __DIR__ . DS . 'db.php',
     'cache' => require __DIR__ . DS . 'cache.php',
