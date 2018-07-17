@@ -11,6 +11,7 @@
 namespace App\Controllers;
 
 use Swoft\Bean\Annotation\Inject;
+use App\Core\HttpServer\Response;
 
 /**
  * Class BaseController
@@ -22,7 +23,7 @@ class BaseController
      * 注入自定义Response
      * @Inject()
      *
-     * @var \App\Core\HttpServer\Response
+     * @var Response
      */
     protected $response;
 }
