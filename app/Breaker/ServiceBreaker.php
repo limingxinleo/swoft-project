@@ -17,7 +17,7 @@ use Swoft\Sg\Circuit\CircuitBreaker;
 /**
  * the breaker of default
  *
- * @Breaker("default")
+ * @Breaker("service")
  */
 class ServiceBreaker extends CircuitBreaker
 {
