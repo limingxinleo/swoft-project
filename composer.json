@@ -60,11 +60,5 @@
             "@php bin/swoft app:init"
         ],
         "test": "./vendor/bin/phpunit -c phpunit.xml"
-    },
-    "repositories": {
-        "packagist": {
-            "type": "composer",
-            "url": "https://packagist.phpcomposer.com"
-        }
     }
 }
