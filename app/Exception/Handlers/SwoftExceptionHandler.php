@@ -24,6 +24,7 @@ use Swoft\Exception\ValidatorException;
 use Swoft\Http\Server\Exception\BadRequestException;
 use Swoft\Http\Server\Exception\NotAcceptableException;
 use Swoft\Http\Server\Exception\RouteNotFoundException;
+use App\Exception\NoContentException;
 
 /**
  * the handler of global exception
@@ -158,6 +159,24 @@ class SwoftExceptionHandler
         $exception = $throwable->getMessage();
 
         $this->logger->notice($throwable);
+
+        return $this->response->fail($code, $exception);
+    }
+
+    /**
+     * @Handler(NoContentException::class)
+     *
+     * @param Response   $response
+     * @param \Throwable $throwable
+     *
+     * @return Response
+     */
+    public function handlerNoContentException(Response $response, \Throwable $throwable)
+    {
+        $code = $throwable->getCode();
+        $exception = $throwable->getMessage();
+
+        $this->logger->debug($throwable);
 
         return $this->response->fail($code, $exception);
     }
