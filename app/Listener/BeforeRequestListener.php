@@ -42,7 +42,7 @@ class BeforeRequestListener implements EventHandlerInterface
             'Access-Control-Allow-Origin' => 'http://cross.domain.vue.xx',
             'Access-Control-Allow-Credentials' => true,
             'Access-Control-Allow-Methods' => 'GET, POST, PUT, DELETE, OPTIONS',
-            'Access-Control-Allow-Headers' => 'Accept,Cache-Control,Content-Type,DNT,Keep-Alive,Origin,User-Agent,AUTH-TOKEN',
+            'Access-Control-Allow-Headers' => 'Accept,Cache-Control,Content-Type,DNT,Keep-Alive,Origin,User-Agent',
         ]);
         RequestContext::setResponse($response);
 
