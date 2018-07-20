@@ -39,7 +39,7 @@ class BeforeRequestListener implements EventHandlerInterface
 
         // 处理跨域
         $response = $response->withHeaders([
-            'Access-Control-Allow-Origin' => 'http://cross.domain.vue.xx',
+            'Access-Control-Allow-Origin' => $request->getHeader('Origin')[0],
             'Access-Control-Allow-Credentials' => true,
             'Access-Control-Allow-Methods' => 'GET, POST, PUT, DELETE, OPTIONS',
             'Access-Control-Allow-Headers' => 'Accept,Cache-Control,Content-Type,DNT,Keep-Alive,Origin,User-Agent',
