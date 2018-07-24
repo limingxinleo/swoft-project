@@ -37,8 +37,8 @@ class InitCommand
         $output->colored('inet ip: ' . $ip);
         $root = alias('@root');
         $env = file_get_contents($root . '/.env');
-        $env = preg_replace_callback('/CONSUL_REGISTER_SERVICE_ADDRESS=127\.0\.0\.1/', function ($matches) use ($ip) {
-            return 'CONSUL_REGISTER_SERVICE_ADDRESS=' . $ip;
+        $env = preg_replace_callback('/(CONSUL_REGISTER_SERVICE_ADDRESS|CONSUL_REGISTER_CHECK_TCP)=127\.0\.0\.1/', function ($matches) use ($ip) {
+            return $matches[1] . '=' . $ip;
         }, $env);
 
         file_put_contents($root . '/.env', $env);
