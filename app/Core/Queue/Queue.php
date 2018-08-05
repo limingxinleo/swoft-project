@@ -46,4 +46,10 @@ class Queue extends Job
         $this->setPidPath($pidPath . '/queue.pid');
         $this->setLoggerHandler($logger);
     }
+
+    public function countCurrentJobs()
+    {
+        $redis = $this->getRedisChildClient();
+        return $redis->lLen($this->queueKey);
+    }
 }

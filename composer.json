@@ -33,7 +33,7 @@
         "swoft/service-governance": "^1.0",
         "limingxinleo/swoft-trait-instance": "^1.0",
         "limingxinleo/x-phalcon-enum": "^1.1",
-        "limingxinleo/x-swoole-queue": "^1.1"
+        "limingxinleo/x-swoole-queue": "^1.2"
     },
     "require-dev": {
         "swoft/swoole-ide-helper": "dev-master",
