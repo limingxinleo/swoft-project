@@ -4,7 +4,7 @@
  *
  * @link     https://swoft.org
  * @document https://doc.swoft.org
- * @contact  group@swoft.org
+ * @contact  limingxin@swoft.org
  * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
  */
 
@@ -83,5 +83,4 @@ class QueueCommand
         $output->colored("失败消息数量，共{$count}条");
         return 0;
     }
-
 }

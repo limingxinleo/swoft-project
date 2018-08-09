@@ -7,11 +7,8 @@
  * @contact  limingxin@swoft.org
  * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
  */
-
-namespace App\Models;
-
-use Swoft\Db\Model as SwoftModel;
-
-class Model extends SwoftModel
-{
-}
+return [
+    'custom' => [
+        'Swoftx\\Aop\\Cacheable\\',
+    ],
+];
