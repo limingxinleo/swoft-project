@@ -8,9 +8,12 @@
  * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
  */
 
+use App\Core\Logger\Handlers\FileHandler;
+
 return [
     'debugHandler' => [
-        'class' => \Swoft\Log\FileHandler::class,
+        'class' => FileHandler::class,
+        'fileName' => 'debug',
         'logFile' => '@runtime/logs/debug.log',
         'formatter' => '${lineFormatter}',
         'levels' => [
@@ -20,7 +23,8 @@ return [
         ],
     ],
     'traceHandler' => [
-        'class' => \Swoft\Log\FileHandler::class,
+        'class' => FileHandler::class,
+        'fileName' => 'trace',
         'logFile' => '@runtime/logs/trace.log',
         'formatter' => '${lineFormatter}',
         'levels' => [
@@ -28,7 +32,8 @@ return [
         ],
     ],
     'noticeHandler' => [
-        'class' => \Swoft\Log\FileHandler::class,
+        'class' => FileHandler::class,
+        'fileName' => 'notice',
         'logFile' => '@runtime/logs/notice.log',
         'formatter' => '${lineFormatter}',
         'levels' => [
@@ -36,7 +41,8 @@ return [
         ],
     ],
     'applicationHandler' => [
-        'class' => \Swoft\Log\FileHandler::class,
+        'class' => FileHandler::class,
+        'fileName' => 'error',
         'logFile' => '@runtime/logs/error.log',
         'formatter' => '${lineFormatter}',
         'levels' => [
