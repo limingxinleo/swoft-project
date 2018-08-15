@@ -10,5 +10,6 @@
 return [
     'custom' => [
         'Swoftx\\Aop\\Cacheable\\',
+        'Swoftx\\Db\\Entity\\',
     ],
 ];
