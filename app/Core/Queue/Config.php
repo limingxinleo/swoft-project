@@ -56,34 +56,6 @@ class Config
     protected $delayKey = 'swoft:queue:delay';
 
     /**
-     * Redis Host
-     * @Value(name="${config.queue.host}", env="${QUEUE_REDIS_HOST}")
-     * @var string
-     */
-    protected $host = '127.0.0.1';
-
-    /**
-     * Redis Auth
-     * @Value(name="${config.queue.auth}", env="${QUEUE_REDIS_AUTH}")
-     * @var string
-     */
-    protected $auth = null;
-
-    /**
-     * Redis Port
-     * @Value(name="${config.queue.port}", env="${QUEUE_REDIS_PORT}")
-     * @var int
-     */
-    protected $port = 6379;
-
-    /**
-     * Redis Db
-     * @Value(name="${config.queue.db}", env="${QUEUE_REDIS_DB}")
-     * @var int
-     */
-    protected $db = 0;
-
-    /**
      * @return int
      */
     public function getMaxProcesses(): int
@@ -161,69 +133,5 @@ class Config
     public function setDelayKey(string $delayKey)
     {
         $this->delayKey = $delayKey;
-    }
-
-    /**
-     * @return string
-     */
-    public function getHost(): string
-    {
-        return $this->host;
-    }
-
-    /**
-     * @param string $host
-     */
-    public function setHost(string $host)
-    {
-        $this->host = $host;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAuth()
-    {
-        return $this->auth;
-    }
-
-    /**
-     * @param string $auth
-     */
-    public function setAuth(string $auth)
-    {
-        $this->auth = $auth;
-    }
-
-    /**
-     * @return int
-     */
-    public function getPort(): int
-    {
-        return $this->port;
-    }
-
-    /**
-     * @param int $port
-     */
-    public function setPort(int $port)
-    {
-        $this->port = $port;
-    }
-
-    /**
-     * @return int
-     */
-    public function getDb(): int
-    {
-        return $this->db;
-    }
-
-    /**
-     * @param int $db
-     */
-    public function setDb(int $db)
-    {
-        $this->db = $db;
     }
 }
