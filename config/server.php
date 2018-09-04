@@ -8,9 +8,10 @@
  * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
  */
 
+$pfile = env('PFILE', '@runtime/swoft.pid');
 return [
     'server' => [
-        'pfile' => env('PFILE', '/tmp/swoft.pid'),
+        'pfile' => alias($pfile),
         'pname' => env('PNAME', 'php-swoft'),
         'tcpable' => env('TCPABLE', true),
         'cronable' => env('CRONABLE', false),
