@@ -11,6 +11,7 @@
 namespace App\Core\Queue;
 
 use Swoft\App;
+use Swoft\Redis\Exception\RedisException;
 use Swoft\Redis\Pool\Config\RedisPoolConfig;
 use Swoft\Redis\Pool\RedisPool;
 use Swoft\Redis\Redis;
