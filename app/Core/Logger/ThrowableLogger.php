@@ -53,4 +53,9 @@ class ThrowableLogger
             $this->logger->$name($this->format($arguments[0]));
         }
     }
+
+    public function getLogger()
+    {
+        return $this->logger;
+    }
 }
