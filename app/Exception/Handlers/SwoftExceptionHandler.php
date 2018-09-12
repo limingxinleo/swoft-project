@@ -194,8 +194,8 @@ class SwoftExceptionHandler
     public function handleRpcStatusException(Response $response, \Throwable $throwable)
     {
         $code = $throwable->getStatus() ?? $throwable->getCode();
-        $exception = $throwable->getMessage() ?? $throwable->getMessage();
-        $data = $throwable->getData();
+        $exception = $throwable->getResponseMessage() ?? $throwable->getMessage();
+        $data = $throwable->getResponse();
 
         $this->logger->getLogger()->warning(JsonHelper::encode($data, JSON_UNESCAPED_UNICODE));
 
