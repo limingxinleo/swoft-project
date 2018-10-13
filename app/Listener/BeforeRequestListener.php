@@ -20,7 +20,7 @@ use Swoft\Http\Message\Server\Response;
 use Swoft\Http\Server\Event\HttpServerEvent;
 
 /**
- * Class BeforeRequestListener - event handler
+ * Class BeforeRequestListener
  *
  * @Listener(HttpServerEvent::BEFORE_REQUEST)
  * @package App\Listener
