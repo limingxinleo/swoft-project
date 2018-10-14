@@ -41,7 +41,7 @@ class Queue extends Job
 
         $pidPath = alias('@runtime');
 
-        $logger = App::getLogger();
+        $logger = bean('queueLogger');
 
         $this->setRedisConfig($host, $auth, $db, $port);
         $this->setPidPath($pidPath . '/queue.pid');
