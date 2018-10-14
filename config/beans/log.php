@@ -8,50 +8,7 @@
  * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
  */
 
-use App\Core\Logger\Handlers\FileHandler;
-
-return [
-    'debugHandler' => [
-        'class' => FileHandler::class,
-        'fileName' => 'debug',
-        'logFile' => '@runtime/logs/debug.log',
-        'formatter' => '${lineFormatter}',
-        'levels' => [
-            \Swoft\Log\Logger::INFO,
-            \Swoft\Log\Logger::DEBUG,
-        ],
-    ],
-    'traceHandler' => [
-        'class' => FileHandler::class,
-        'fileName' => 'trace',
-        'logFile' => '@runtime/logs/trace.log',
-        'formatter' => '${lineFormatter}',
-        'levels' => [
-            \Swoft\Log\Logger::TRACE,
-        ],
-    ],
-    'noticeHandler' => [
-        'class' => FileHandler::class,
-        'fileName' => 'notice',
-        'logFile' => '@runtime/logs/notice.log',
-        'formatter' => '${lineFormatter}',
-        'levels' => [
-            \Swoft\Log\Logger::NOTICE,
-        ],
-    ],
-    'applicationHandler' => [
-        'class' => FileHandler::class,
-        'fileName' => 'error',
-        'logFile' => '@runtime/logs/error.log',
-        'formatter' => '${lineFormatter}',
-        'levels' => [
-            \Swoft\Log\Logger::WARNING,
-            \Swoft\Log\Logger::ERROR,
-            \Swoft\Log\Logger::CRITICAL,
-            \Swoft\Log\Logger::ALERT,
-            \Swoft\Log\Logger::EMERGENCY,
-        ],
-    ],
+$config = [
     'logger' => [
         'name' => APP_NAME,
         'enable' => env('LOG_ENABLE', false),
@@ -64,34 +21,14 @@ return [
             '${traceHandler}',
         ],
     ],
-    'customLogger' => [
-        'class' => \Swoft\Log\Logger::class,
-        'name' => APP_NAME,
-        'enable' => env('LOG_ENABLE', false),
-        'flushInterval' => 1,
-        'flushRequest' => true,
-        'handlers' => [
-            '${customHandler}',
-        ],
-    ],
-    'customHandler' => [
-        'class' => FileHandler::class,
-        'fileName' => 'custom',
-        'formatter' => '${lineFormatter}',
-        'levels' => [
-            \Swoft\Log\Logger::INFO,
-            \Swoft\Log\Logger::DEBUG,
-            \Swoft\Log\Logger::NOTICE,
-            \Swoft\Log\Logger::TRACE,
-            \Swoft\Log\Logger::WARNING,
-            \Swoft\Log\Logger::ERROR,
-            \Swoft\Log\Logger::CRITICAL,
-            \Swoft\Log\Logger::ALERT,
-            \Swoft\Log\Logger::EMERGENCY,
-        ],
-    ],
     'lineFormatter' => [
         'class' => \Monolog\Formatter\LineFormatter::class,
         'allowInlineLineBreaks' => true,
     ],
 ];
+
+$handlers = require __DIR__ . '/log/handlers.php';
+$custom = require __DIR__ . '/log/custom.php';
+$queue = require __DIR__ . '/log/queue.php';
+
+return array_merge($config, $handlers, $custom, $queue);
