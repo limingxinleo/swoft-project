@@ -10,6 +10,7 @@
 
 return [
     'serverDispatcher' => [
+        'class' => \App\Core\HttpServer\Dispatcher::class,
         'middlewares' => [
             \Swoft\View\Middleware\ViewMiddleware::class,
             // \Swoft\Devtool\Middleware\DevToolMiddleware::class,
