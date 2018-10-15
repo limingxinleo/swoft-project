@@ -8,5 +8,10 @@
  * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
  */
 
+use App\Core\RpcServer\Dispatcher;
+
 return [
+    'ServiceDispatcher' => [
+        'class' => Dispatcher::class,
+    ],
 ];
