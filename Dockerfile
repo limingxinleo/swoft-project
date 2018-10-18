@@ -6,6 +6,7 @@
 # @link https://github.com/docker-library/php php dockerfiles
 # ------------------------------------------------------------------------------------
 # @build-example docker build . -f Dockerfile -t swoft/swoft-project:v1.0
+# @run-example docker run --rm -d -p 8080:8080 --name swoft-project swoft/swoft-project:1.0
 #
 
 FROM swoft/alphp:cli
