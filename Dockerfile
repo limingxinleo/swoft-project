@@ -15,19 +15,19 @@ LABEL maintainer="limx <limingxin@swoft.org>" version="1.0"
 # 安装其他依赖
 RUN apk add git php7-xml
 
-ADD . /var/www/swoft
-
-WORKDIR /var/www/swoft
-
 # 安装composer
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
     && composer self-update --clean-backups
 
+COPY . /opt/www/swoft
+
+WORKDIR /opt/www/swoft
+
 RUN composer install --no-dev \
     && composer dump-autoload -o \
-    && composer clearcache
+    && php /opt/www/swoft/bin/swoft app:init
 
 EXPOSE 8080
 
-ENTRYPOINT ["php", "/var/www/swoft/bin/swoft", "start"]
+ENTRYPOINT ["php", "/opt/www/swoft/bin/swoft", "start"]
