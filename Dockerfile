@@ -7,6 +7,7 @@
 # ------------------------------------------------------------------------------------
 # @build-example docker build . -f Dockerfile -t swoft/swoft-project:v1.0
 # @run-example docker run --rm -d -p 8080:8080 --name swoft-project swoft/swoft-project:1.0
+# @run-example docker run --rm -d -p 8080:8080 --name swoft-project --env-file .env registry.cn-shanghai.aliyuncs.com/limingxinleo/swoft-project:latest
 #
 
 FROM swoft/alphp:cli
