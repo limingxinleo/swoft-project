@@ -13,7 +13,7 @@ FROM swoft/alphp:cli
 LABEL maintainer="limx <limingxin@swoft.org>" version="1.0"
 
 # 安装其他依赖
-RUN apk add git
+RUN apk add git php7-xml
 
 ADD . /var/www/swoft
 
