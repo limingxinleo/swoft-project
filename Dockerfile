@@ -14,7 +14,7 @@ FROM swoft/alphp:cli
 LABEL maintainer="limx <limingxin@swoft.org>" version="1.0"
 
 # 安装其他依赖
-RUN apk add git php7-xml
+RUN apk add git php7-xml php7-pcntl
 
 # 安装composer
 RUN curl -sS https://getcomposer.org/installer | php \
