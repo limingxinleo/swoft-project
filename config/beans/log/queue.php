@@ -13,7 +13,7 @@ return [
     'queueLogger' => [
         'class' => \Swoft\Log\Logger::class,
         'name' => APP_NAME,
-        'enable' => env('LOG_ENABLE', false),
+        'enable' => env('LOG_ENABLE', true),
         'flushInterval' => 1,
         'flushRequest' => true,
         'handlers' => [

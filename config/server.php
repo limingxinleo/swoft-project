@@ -12,7 +12,7 @@ $pfile = env('PFILE', '@runtime/swoft.pid');
 return [
     'server' => [
         'pfile' => alias($pfile),
-        'pname' => env('PNAME', 'php-swoft'),
+        'pname' => env('PNAME', 'swoft'),
         'tcpable' => env('TCPABLE', true),
         'cronable' => env('CRONABLE', false),
         'autoReload' => env('AUTO_RELOAD', true),
@@ -23,7 +23,7 @@ return [
         'mode' => env('TCP_MODE', SWOOLE_PROCESS),
         'type' => env('TCP_TYPE', SWOOLE_SOCK_TCP),
         'package_max_length' => env('TCP_PACKAGE_MAX_LENGTH', 2048),
-        'open_eof_check' => env('TCP_OPEN_EOF_CHECK', false),
+        'open_eof_check' => env('TCP_OPEN_EOF_CHECK', true),
         'open_eof_split' => env('TCP_OPEN_EOF_SPLIT', true),
         'package_eof' => "\r\n",
         'client' => [
@@ -35,7 +35,7 @@ return [
     ],
     'http' => [
         'host' => env('HTTP_HOST', '0.0.0.0'),
-        'port' => env('HTTP_PORT', 80),
+        'port' => env('HTTP_PORT', 8080),
         'mode' => env('HTTP_MODE', SWOOLE_PROCESS),
         'type' => env('HTTP_TYPE', SWOOLE_SOCK_TCP),
     ],
@@ -50,7 +50,7 @@ return [
         'task_queue' => env('CRONTAB_TASK_QUEUE', 2048),
     ],
     'setting' => [
-        'worker_num' => env('WORKER_NUM', 1),
+        'worker_num' => env('WORKER_NUM', 4),
         'max_request' => env('MAX_REQUEST', 10000),
         'daemonize' => env('DAEMONIZE', 0),
         'dispatch_mode' => env('DISPATCH_MODE', 2),
@@ -63,7 +63,7 @@ return [
         'open_http2_protocol' => env('OPEN_HTTP2_PROTOCOL', false),
         'ssl_cert_file' => env('SSL_CERT_FILE', ''),
         'ssl_key_file' => env('SSL_KEY_FILE', ''),
-        'task_ipc_mode' => env('TASK_IPC_MODE', 1),
+        'task_ipc_mode' => env('TASK_IPC_MODE', 2),
         'message_queue_key' => env('MESSAGE_QUEUE_KEY', 0x70001001),
         'task_tmpdir' => env('TASK_TMPDIR', '/tmp'),
     ],

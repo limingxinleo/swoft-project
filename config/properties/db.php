@@ -10,29 +10,27 @@
 
 return [
     'master' => [
-        'name' => 'master',
+        'name' => 'default.master',
         'uri' => [
-            '127.0.0.1:3306/test?user=root&password=123456&charset=utf8',
-            '127.0.0.1:3306/test?user=root&password=123456&charset=utf8',
+            '127.0.0.1:3306/test?user=root&password=&charset=utf8mb4',
         ],
-        'minActive' => 8,
-        'maxActive' => 8,
-        'maxWait' => 8,
-        'timeout' => 8,
+        'minActive' => 5,
+        'maxActive' => 10,
+        'maxWait' => 20,
+        'timeout' => 2,
         'maxIdleTime' => 60,
         'maxWaitTime' => 3,
     ],
 
     'slave' => [
-        'name' => 'slave',
+        'name' => 'default.slave',
         'uri' => [
-            '127.0.0.1:3306/test?user=root&password=123456&charset=utf8',
-            '127.0.0.1:3306/test?user=root&password=123456&charset=utf8',
+            '127.0.0.1:3306/test?user=root&password=&charset=utf8mb4',
         ],
-        'minActive' => 8,
-        'maxActive' => 8,
-        'maxWait' => 8,
-        'timeout' => 8,
+        'minActive' => 5,
+        'maxActive' => 10,
+        'maxWait' => 20,
+        'timeout' => 3,
         'maxIdleTime' => 60,
         'maxWaitTime' => 3,
     ],

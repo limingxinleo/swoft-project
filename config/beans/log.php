@@ -11,7 +11,7 @@
 $config = [
     'logger' => [
         'name' => APP_NAME,
-        'enable' => env('LOG_ENABLE', false),
+        'enable' => env('LOG_ENABLE', true),
         'flushInterval' => 100,
         'flushRequest' => true,
         'handlers' => [

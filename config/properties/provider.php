@@ -10,21 +10,22 @@
 
 return [
     'consul' => [
-        'address' => '',
+        'address' => 'http://127.0.0.1',
         'port' => 8500,
         'register' => [
             'id' => '',
-            'name' => '',
+            'name' => 'swoft',
             'tags' => [],
             'enableTagOverride' => false,
+            'eto' => false,
             'service' => [
-                'address' => 'localhost',
+                'address' => '127.0.0.1',
                 'port' => '8099',
             ],
             'check' => [
                 'id' => '',
-                'name' => '',
-                'tcp' => 'localhost:8099',
+                'name' => 'swoft',
+                'tcp' => '127.0.0.1:8099',
                 'interval' => 10,
                 'timeout' => 1,
             ],
