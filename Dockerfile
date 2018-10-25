@@ -29,6 +29,6 @@ RUN composer install --no-dev \
     && composer dump-autoload -o \
     && php /opt/www/swoft/bin/swoft app:init
 
-EXPOSE 8080
+EXPOSE 8080 8099
 
 ENTRYPOINT ["php", "/opt/www/swoft/bin/swoft", "start"]
