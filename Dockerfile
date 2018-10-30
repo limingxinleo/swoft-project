@@ -19,6 +19,7 @@ LABEL maintainer="limx <limingxin@swoft.org>" version="1.0"
 ENV HIREDIS_VERSION=0.13.3 \
     SWOOLE_VERSION=4.2.5 \
     MONGO_VERSION=1.5.2 \
+    CPHALCON_VERSION=3.4.1 \
     #  install and remove building packages
     PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev zlib-dev"
 
@@ -30,6 +31,7 @@ RUN set -ex \
         && curl -SL "https://github.com/redis/hiredis/archive/v${HIREDIS_VERSION}.tar.gz" -o hiredis.tar.gz \
         && curl -SL "https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz" -o swoole.tar.gz \
         && curl -SL "http://pecl.php.net/get/mongodb-${MONGO_VERSION}.tgz" -o mongodb.tgz \
+        && curl -SL "https://github.com/phalcon/cphalcon/archive/v${CPHALCON_VERSION}.tar.gz" -o cphalcon.tar.gz \
         && ls -alh \
         && apk update \
         # for swoole extension libaio linux-headers
@@ -38,6 +40,16 @@ RUN set -ex \
         # php extension: mongodb
         && pecl install mongodb.tgz \
         && echo "extension=mongodb.so" > /etc/php7/conf.d/20_mongodb.ini \
+        # php extension: phalcon
+        && cd /tmp \
+        && mdir -p cphalcon \
+        && tar -xf cphalcon.tar.gz -C cphalcon --strip-components=1 \
+        && rm cphalcon.tar.gz \
+        && ( \
+            cd cphalcon/ext \
+            && ./install \
+        ) \
+        && rm -r cphalcon \
         # hiredis - redis C client, provide async operate support for Swoole
         && cd /tmp \
         && tar -zxvf hiredis.tar.gz \
