@@ -27,10 +27,8 @@ ENV HIREDIS_VERSION=0.13.3 \
 ##
 RUN set -ex \
         && cd /tmp \
-        # && wget -O hiredis.tar.gz -c https://github.com/redis/hiredis/archive/v${HIREDIS_VERSION}.tar.gz \
         && curl -SL "https://github.com/redis/hiredis/archive/v${HIREDIS_VERSION}.tar.gz" -o hiredis.tar.gz \
         && curl -SL "https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz" -o swoole.tar.gz \
-        # && curl -SL "https://github.com/mongodb/mongo-php-driver/archive/v${MONGO_VERSION}.tgz" -o mongodb.tgz \
         && curl -SL "http://pecl.php.net/get/mongodb-${MONGO_VERSION}.tgz" -o mongodb.tgz \
         && ls -alh \
         && apk update \
@@ -39,7 +37,6 @@ RUN set -ex \
         && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev \
         # php extension: mongodb
         && pecl install mongodb.tgz \
-        # && pecl install mongodb \
         && echo "extension=mongodb.so" > /etc/php7/conf.d/20_mongodb.ini \
         # hiredis - redis C client, provide async operate support for Swoole
         && cd /tmp \
@@ -66,7 +63,7 @@ RUN set -ex \
         && echo -e "\033[42;37m Build Completed :).\033[0m\n"
 
 # 安装其他依赖
-RUN apk add git php7-xml php7-pcntl
+RUN apk add --no-cache git php7-xml php7-pcntl
 
 # 安装composer
 RUN curl -sS https://getcomposer.org/installer | php \
