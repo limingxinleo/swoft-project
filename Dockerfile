@@ -31,25 +31,25 @@ RUN set -ex \
         && curl -SL "https://github.com/redis/hiredis/archive/v${HIREDIS_VERSION}.tar.gz" -o hiredis.tar.gz \
         && curl -SL "https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz" -o swoole.tar.gz \
         && curl -SL "http://pecl.php.net/get/mongodb-${MONGO_VERSION}.tgz" -o mongodb.tgz \
-        && curl -SL "https://github.com/phalcon/cphalcon/archive/v${CPHALCON_VERSION}.tar.gz" -o cphalcon.tar.gz \
+        && curl -SL "https://github.com/phalcon/cphalcon/archive/v${CPHALCON_VERSION}.zip" -o cphalcon.zip \
         && ls -alh \
         && apk update \
         # for swoole extension libaio linux-headers
-        && apk add --no-cache libstdc++ openssl \
+        && apk add --no-cache libstdc++ openssl php7-xml php7-pcntl git bash \
         && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev \
         # php extension: mongodb
         && pecl install mongodb.tgz \
-        && echo "extension=mongodb.so" > /etc/php7/conf.d/20_mongodb.ini \
+        && echo "extension=mongodb.so" > /etc/php7/conf.d/mongodb.ini \
         # php extension: phalcon
         && cd /tmp \
-        && mdir -p cphalcon \
-        && tar -xf cphalcon.tar.gz -C cphalcon --strip-components=1 \
-        && rm cphalcon.tar.gz \
+        && unzip cphalcon.zip \
+        && rm cphalcon.zip \
         && ( \
-            cd cphalcon/ext \
+            cd cphalcon-${CPHALCON_VERSION}/build \
             && ./install \
+            && echo "extension=phalcon.so" > /etc/php7/conf.d/phalcon.ini \
         ) \
-        && rm -r cphalcon \
+        && rm -r cphalcon-${CPHALCON_VERSION} \
         # hiredis - redis C client, provide async operate support for Swoole
         && cd /tmp \
         && tar -zxvf hiredis.tar.gz \
@@ -67,15 +67,12 @@ RUN set -ex \
             && make -j$(nproc) && make install \
         ) \
         && rm -r swoole \
-        && echo "extension=swoole.so" > /etc/php7/conf.d/20_swoole.ini \
+        && echo "extension=swoole.so" > /etc/php7/conf.d/swoole.ini \
         && php -v \
         # ---------- clear works ----------
         && apk del .build-deps \
         && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
         && echo -e "\033[42;37m Build Completed :).\033[0m\n"
-
-# 安装其他依赖
-RUN apk add --no-cache git php7-xml php7-pcntl
 
 # 安装composer
 RUN curl -sS https://getcomposer.org/installer | php \
