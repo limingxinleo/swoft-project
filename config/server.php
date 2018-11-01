@@ -66,5 +66,6 @@ return [
         'task_ipc_mode' => env('TASK_IPC_MODE', 2),
         'message_queue_key' => env('MESSAGE_QUEUE_KEY', 0x70001001),
         'task_tmpdir' => env('TASK_TMPDIR', '/tmp'),
+        'max_coroutine' => env('MAX_COROUTINE', 3000),
     ],
 ];
