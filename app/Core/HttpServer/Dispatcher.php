@@ -11,10 +11,11 @@
 namespace App\Core\HttpServer;
 
 use Swoft\Http\Server\ServerDispatcher;
+use Swoft\Http\Message\Server\Response;
 
 class Dispatcher extends ServerDispatcher
 {
-    protected function afterDispatch($response)
+    protected function afterDispatch($response): Response
     {
         parent::afterDispatch($response);
     }

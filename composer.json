@@ -11,26 +11,7 @@
     "require": {
         "php": ">=7.0",
         "ext-swoole": ">=2.1",
-        "swoft/framework": "^1.0",
-        "swoft/rpc": "^1.0",
-        "swoft/rpc-server": "^1.0",
-        "swoft/rpc-client": "^1.0",
-        "swoft/http-server": "^1.0",
-        "swoft/http-client": "^1.0",
-        "swoft/websocket-server": "^1.0",
-        "swoft/task": "^1.0",
-        "swoft/http-message": "^1.0",
-        "swoft/view": "^1.0",
-        "swoft/db": "^1.1",
-        "swoft/cache": "^1.0",
-        "swoft/redis": "^1.0",
-        "swoft/console": "^1.0",
-        "swoft/devtool": "^1.0",
-        "swoft/session": "^1.0",
-        "swoft/i18n": "^1.0",
-        "swoft/process": "^1.0",
-        "swoft/memory": "^1.0",
-        "swoft/service-governance": "^1.0",
+        "swoft/component": "dev-feature",
         "limingxinleo/swoft-trait-instance": "^1.0",
         "limingxinleo/x-phalcon-enum": "^1.1",
         "limingxinleo/x-swoole-queue": "^1.2",
@@ -61,5 +42,11 @@
             "@php bin/swoft app:init"
         ],
         "test": "./vendor/bin/phpunit -c phpunit.xml"
+    },
+    "repositories": {
+        "swoft-component": {
+            "type": "git",
+            "url": "https://github.com/limingxinleo/swoft-component.git"
+        }
     }
 }

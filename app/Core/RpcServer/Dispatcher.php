@@ -28,20 +28,6 @@ use Swoole\Server;
 class Dispatcher extends ServiceDispatcher
 {
     /**
-     * Service middlewares
-     *
-     * @var array
-     */
-    private $middlewares = [];
-
-    /**
-     * The default of handler adapter
-     *
-     * @var string
-     */
-    private $handlerAdapter = HandlerAdapterMiddleware::class;
-
-    /**
      * @param array ...$params
      * @throws \Swoft\Rpc\Exception\RpcException
      * @throws \InvalidArgumentException
@@ -83,42 +69,6 @@ class Dispatcher extends ServiceDispatcher
     }
 
     /**
-     * Request middleware
-     *
-     * @return array
-     */
-    public function requestMiddleware(): array
-    {
-        return array_merge($this->preMiddleware(), $this->middlewares, $this->afterMiddleware());
-    }
-
-    /**
-     * Pre middleware
-     *
-     * @return array
-     */
-    public function preMiddleware(): array
-    {
-        return [
-            PackerMiddleware::class,
-            RouterMiddleware::class,
-        ];
-    }
-
-    /**
-     * After middleware
-     *
-     * @return array
-     */
-    public function afterMiddleware(): array
-    {
-        return [
-            ValidatorMiddleware::class,
-            UserMiddleware::class,
-        ];
-    }
-
-    /**
      * @param \Swoole\Server $server
      * @param int            $fd
      * @param int            $fromid
@@ -133,13 +83,5 @@ class Dispatcher extends ServiceDispatcher
             ->withAttribute(PackerMiddleware::ATTRIBUTE_FD, $fd)
             ->withAttribute(PackerMiddleware::ATTRIBUTE_FROMID, $fromid)
             ->withAttribute(PackerMiddleware::ATTRIBUTE_DATA, $data);
-    }
-
-    /**
-     * @return array
-     */
-    public function getMiddlewares(): array
-    {
-        return $this->middlewares;
     }
 }
