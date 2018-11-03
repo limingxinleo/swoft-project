@@ -7,10 +7,11 @@
  * @contact  limingxin@swoft.org
  * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
  */
+
+use hiqdev\composer\config\Builder;
+
+$config = require Builder::path('swoft.components');
+
 return [
-    'custom' => [
-        'Swoftx\\Aop\\Cacheable\\',
-        'Swoftx\\Db\\Entity\\',
-        'Swoftx\\Rpc\\',
-    ],
+    'custom' => $config['custom'],
 ];
