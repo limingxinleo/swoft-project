@@ -10,22 +10,28 @@
 
 namespace App\Core\Constants;
 
-use Xin\Phalcon\Enum\Enum;
+use Swoftx\Constants\Constants;
 
 /**
  * Class ErrorCode
  * @package App\Constants
  */
-class ErrorCode extends Enum
+class ErrorCode extends Constants
 {
     const SUCCESS = 0;
 
+    /**
+     * @Message('服务内部错误')
+     */
     const SERVER_ERROR = 500;
 
+    /**
+     * @Message('参数验证失败')
+     */
     const VALIDATE_FAIL = 600;
 
     /**
      * @Message('参数错误')
      */
-    public static $ENUM_PARAMS_ERROR = 1000;
+    const PARAMS_ERROR = 1000;
 }

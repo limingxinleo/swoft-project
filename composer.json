@@ -32,7 +32,7 @@
         "swoft/memory": "~1.0",
         "swoft/service-governance": "~1.0",
         "limingxinleo/swoft-trait-instance": "^1.0",
-        "limingxinleo/x-phalcon-enum": "^1.1",
+        "limingxinleo/swoft-constants": "^1.0",
         "limingxinleo/x-swoole-queue": "^1.2",
         "limingxinleo/swoft-aop-cacheable": "^1.1",
         "limingxinleo/swoft-entity-cache": "^1.2",
