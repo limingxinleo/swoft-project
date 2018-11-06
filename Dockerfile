@@ -63,7 +63,7 @@ RUN set -ex \
         && ( \
             cd swoole \
             && phpize \
-            && ./configure --enable-async-redis --enable-mysqlnd --enable-openssl \
+            && ./configure --enable-mysqlnd --enable-openssl \
             && make -j$(nproc) && make install \
         ) \
         && rm -r swoole \
