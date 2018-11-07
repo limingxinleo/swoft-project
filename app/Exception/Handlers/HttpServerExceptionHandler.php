@@ -12,8 +12,8 @@ namespace App\Exception\Handlers;
 
 use App\Core\Logger\ThrowableLogger;
 use Swoft\Bean\Annotation\Inject;
-use Swoft\Bean\Annotation\ExceptionHandler;
-use Swoft\Bean\Annotation\Handler;
+use Swoft\ErrorHandler\Bean\Annotation\ExceptionHandler;
+use Swoft\ErrorHandler\Bean\Annotation\Handler;
 use Swoft\Http\Message\Server\Response;
 use App\Exception\HttpServerException;
 

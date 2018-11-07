@@ -12,12 +12,12 @@ namespace App\Exception\Handlers;
 
 use App\Core\Constants\ErrorCode;
 use App\Core\Logger\ThrowableLogger;
-use Swoft\Bean\Annotation\Handler;
+use Swoft\ErrorHandler\Bean\Annotation\Handler;
 use Swoft\Helper\JsonHelper;
 use Swoft\Http\Message\Server\Request;
 use Swoft\Http\Message\Server\Response;
 use Swoft\Bean\Annotation\Inject;
-use Swoft\Bean\Annotation\ExceptionHandler;
+use Swoft\ErrorHandler\Bean\Annotation\ExceptionHandler;
 use Exception;
 use Swoft\Exception\RuntimeException;
 use Swoft\Exception\BadMethodCallException;
