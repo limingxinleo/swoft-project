@@ -17,6 +17,6 @@ class Dispatcher extends ServerDispatcher
 {
     protected function afterDispatch($response): Response
     {
-        parent::afterDispatch($response);
+        return parent::afterDispatch($response);
     }
 }

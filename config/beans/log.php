@@ -8,6 +8,8 @@
  * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
  */
 
+use App\Core\Logger\LineFormatter;
+
 $config = [
     'logger' => [
         'name' => APP_NAME,
@@ -22,7 +24,7 @@ $config = [
         ],
     ],
     'lineFormatter' => [
-        'class' => \Monolog\Formatter\LineFormatter::class,
+        'class' => LineFormatter::class,
         'allowInlineLineBreaks' => true,
     ],
 ];

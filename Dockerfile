@@ -17,7 +17,7 @@ LABEL maintainer="limx <limingxin@swoft.org>" version="1.0"
 # ---------- env settings ----------
 ##
 ENV HIREDIS_VERSION=0.13.3 \
-    SWOOLE_VERSION=4.2.5 \
+    SWOOLE_VERSION=4.2.6 \
     MONGO_VERSION=1.5.2 \
     CPHALCON_VERSION=3.4.1 \
     #  install and remove building packages
@@ -63,7 +63,7 @@ RUN set -ex \
         && ( \
             cd swoole \
             && phpize \
-            && ./configure --enable-async-redis --enable-mysqlnd --enable-openssl \
+            && ./configure --enable-mysqlnd --enable-openssl \
             && make -j$(nproc) && make install \
         ) \
         && rm -r swoole \

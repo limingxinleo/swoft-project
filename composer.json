@@ -9,15 +9,16 @@
     "description": "Modern High performance AOP and Coroutine PHP Framework, base on Swoole 2",
     "license": "Apache-2.0",
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.1",
         "ext-swoole": ">=2.1",
         "swoft/component": "dev-feature",
         "limingxinleo/swoft-trait-instance": "^1.0",
-        "limingxinleo/x-phalcon-enum": "^1.1",
+        "limingxinleo/swoft-constants": "^1.0",
         "limingxinleo/x-swoole-queue": "^1.2",
         "limingxinleo/swoft-aop-cacheable": "^1.1",
         "limingxinleo/swoft-entity-cache": "^1.2",
-        "limingxinleo/swoft-rpc": "^1.0"
+        "limingxinleo/swoft-rpc": "^1.0",
+        "hiqdev/composer-config-plugin": "^0.2.5"
     },
     "require-dev": {
         "swoft/swoole-ide-helper": "dev-master",
@@ -47,6 +48,11 @@
         "swoft-component": {
             "type": "git",
             "url": "https://github.com/limingxinleo/swoft-component.git"
+        }
+    },
+    "extra": {
+        "config-plugin": {
+            "swoft.components": []
         }
     }
 }
