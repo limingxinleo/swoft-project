@@ -8,9 +8,11 @@
  * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
  */
 
+use Swoft\Http\Server\ServerDispatcher;
+
 return [
     'serverDispatcher' => [
-        'class' => \App\Core\HttpServer\Dispatcher::class,
+        'class' => ServerDispatcher::class,
         'middlewares' => [
             \Swoft\View\Middleware\ViewMiddleware::class,
             // \Swoft\Devtool\Middleware\DevToolMiddleware::class,
