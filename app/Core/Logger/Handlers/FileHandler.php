@@ -86,19 +86,15 @@ class FileHandler extends SwoftFileHandler
      */
     protected function syncWrite(string $logFile, string $messageText)
     {
-        if ($this->isDockerEnvironment()) {
-            // TODO: 兼容处理，Docker环境内，fopen报错
-            file_put_contents($logFile, $messageText);
-        } else {
-            $fp = fopen($logFile, 'a');
-            if ($fp === false) {
-                throw new \InvalidArgumentException("Unable to append to log file: {$this->logFile}");
-            }
-            flock($fp, LOCK_EX);
-            fwrite($fp, $messageText);
-            flock($fp, LOCK_UN);
-            fclose($fp);
+        $fp = fopen($logFile, 'a');
+        if ($fp === false) {
+            echo "Unable to append to log file: " . $this->getLogFile();
+            return;
         }
+        flock($fp, LOCK_EX);
+        fwrite($fp, $messageText);
+        flock($fp, LOCK_UN);
+        fclose($fp);
     }
 
     protected function isDockerEnvironment()
