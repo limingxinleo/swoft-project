@@ -88,10 +88,6 @@ RUN composer install --no-dev \
     && composer dump-autoload -o \
     && php /opt/www/bin/swoft app:init
 
-RUN touch /opt/www/runtime/logs/swoft.log /opt/www/runtime/logs/error.log \
-    && ln -sf /dev/stdout /opt/www/runtime/logs/swoft.log \
-    && ln -sf /dev/stderr /opt/www/runtime/logs/error.log
-
 EXPOSE 8080 8099
 
 ENTRYPOINT ["php", "/opt/www/bin/swoft", "start"]
