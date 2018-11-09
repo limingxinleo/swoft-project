@@ -20,7 +20,7 @@ ENV HIREDIS_VERSION=0.13.3 \
     SWOOLE_VERSION=4.2.6 \
     MONGO_VERSION=1.5.2 \
     CPHALCON_VERSION=3.4.1 \
-    SWOFT_DOCKER=true \
+    DOCKER_ENVIRONMENT=true \
     #  install and remove building packages
     PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev zlib-dev"
 

@@ -9,6 +9,7 @@
  */
 namespace App\Core\Logger\Handlers;
 
+use App\Core\Logger\Config;
 use Swoft\App;
 use Swoole\Coroutine;
 use Swoft\Log\FileHandler as SwoftFileHandler;
@@ -24,7 +25,7 @@ class FileHandler extends SwoftFileHandler
 
     protected function getLogFile()
     {
-        if (env('SWOFT_DOCKER', false)) {
+        if ($this->isDockerEnvironment()) {
             $logFile = $this->fileName === 'error' ? '/dev/stderr' : '/dev/stdout';
         } else {
             $date = date('Ymd');
@@ -85,13 +86,25 @@ class FileHandler extends SwoftFileHandler
      */
     protected function syncWrite(string $logFile, string $messageText)
     {
-        $fp = fopen($logFile, 'a');
-        if ($fp === false) {
-            throw new \InvalidArgumentException("Unable to append to log file: {$this->logFile}");
+        if ($this->isDockerEnvironment()) {
+            // TODO: 兼容处理，Docker环境内，fopen报错
+            file_put_contents($logFile, $messageText);
+        } else {
+            $fp = fopen($logFile, 'a');
+            if ($fp === false) {
+                throw new \InvalidArgumentException("Unable to append to log file: {$this->logFile}");
+            }
+            flock($fp, LOCK_EX);
+            fwrite($fp, $messageText);
+            flock($fp, LOCK_UN);
+            fclose($fp);
         }
-        flock($fp, LOCK_EX);
-        fwrite($fp, $messageText);
-        flock($fp, LOCK_UN);
-        fclose($fp);
+    }
+
+    protected function isDockerEnvironment()
+    {
+        $config = bean(Config::class);
+
+        return $config->isDockerEnvironment();
     }
 }
