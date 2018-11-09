@@ -24,8 +24,14 @@ class FileHandler extends SwoftFileHandler
 
     protected function getLogFile()
     {
-        $date = date('Ymd');
-        $logFile = App::getAlias("@runtime/logs/{$date}/{$this->fileName}.log");
+        if (env('SWOFT_DOCKER', false)) {
+            $fileName = $this->fileName === 'error' ? 'error' : 'swoft';
+            $logFile = App::getAlias("@runtime/logs/{$fileName}.log");
+        } else {
+            $date = date('Ymd');
+            $logFile = App::getAlias("@runtime/logs/{$date}/{$this->fileName}.log");
+        }
+
         $this->createDir($logFile);
         return $logFile;
     }
