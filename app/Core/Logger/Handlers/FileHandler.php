@@ -25,12 +25,12 @@ class FileHandler extends SwoftFileHandler
 
     protected function getLogFile()
     {
-        if ($this->isDockerEnvironment()) {
-            $logFile = $this->fileName === 'error' ? '/dev/stderr' : '/dev/stdout';
-        } else {
-            $date = date('Ymd');
-            $logFile = App::getAlias("@runtime/logs/{$date}/{$this->fileName}.log");
-        }
+        $date = date('Ymd');
+        $logFile = App::getAlias("@runtime/logs/{$date}/{$this->fileName}.log");
+
+        // if ($this->isDockerEnvironment()) {
+        //     $logFile = $this->fileName === 'error' ? '/dev/stderr' : '/dev/stdout';
+        // }
 
         $this->createDir($logFile);
         return $logFile;
