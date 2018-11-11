@@ -36,14 +36,14 @@ RUN set -ex \
         && ls -alh \
         && apk update \
         # for swoole extension libaio linux-headers
-        && apk add --no-cache libstdc++ openssl php7-xml php7-pcntl php7-gd git bash \
+        && apk add --no-cache libstdc++ openssl php7-xml php7-xmlreader php7-xmlwriter php7-pcntl php7-gd git bash \
         && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev \
         # php extension: mongodb
-        && pecl install mongodb.tgz \
+        && pecl install mongodb.tgz > /tmp/mongo.install.log \
         && echo "extension=mongodb.so" > /etc/php7/conf.d/mongodb.ini \
         # php extension: phalcon
         && cd /tmp \
-        && unzip cphalcon.zip \
+        && unzip -q cphalcon.zip \
         && rm cphalcon.zip \
         && ( \
             cd cphalcon-${CPHALCON_VERSION}/build \
@@ -65,7 +65,7 @@ RUN set -ex \
             cd swoole \
             && phpize \
             && ./configure --enable-mysqlnd --enable-openssl \
-            && make -j$(nproc) && make install \
+            && make -s -j$(nproc) && make install \
         ) \
         && rm -r swoole \
         && echo "extension=swoole.so" > /etc/php7/conf.d/swoole.ini \
