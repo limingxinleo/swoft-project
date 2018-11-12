@@ -10,6 +10,7 @@
 namespace App\Core\RpcServer;
 
 use App\Core\Logger\ThrowableLogger;
+use App\Exception\HttpServerException;
 use Swoft\Contract\DispatcherInterface;
 use Swoft\Rpc\Server\ServiceDispatcher;
 use Swoft\App;
@@ -70,7 +71,11 @@ class Dispatcher implements DispatcherInterface
             $logger = bean(ThrowableLogger::class);
             $logger->error($t);
 
-            $message = sprintf('%s %s %s', $t->getMessage(), $t->getFile(), $t->getLine());
+            $message = $t->getMessage();
+            if (!$t instanceof HttpServerException) {
+                $message = 'RPC 服务调用失败！';
+            }
+
             $data = ResponseHelper::formatData('', $message, $t->getCode());
             $data = service_packer()->pack($data);
         } finally {
