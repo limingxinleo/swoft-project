@@ -12,7 +12,9 @@ install:
 before_script:
   - composer update --dev
 
-script: composer test
+script:
+  - ./vendor/bin/phpstan analyse app
+  - composer test
 
 cache:
   directories:
