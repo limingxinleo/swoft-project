@@ -36,6 +36,7 @@
         "limingxinleo/x-swoole-queue": "^1.2",
         "limingxinleo/swoft-aop-cacheable": "^1.1",
         "limingxinleo/swoft-entity-cache": "^1.2",
+        "limingxinleo/swoft-entity-event": "^1.0",
         "limingxinleo/swoft-rpc": "^1.0",
         "hiqdev/composer-config-plugin": "^0.2.5"
     },
