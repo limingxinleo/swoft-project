@@ -17,7 +17,7 @@ LABEL maintainer="limx <limingxin@swoft.org>" version="1.0"
 # ---------- env settings ----------
 ##
 ENV HIREDIS_VERSION=0.13.3 \
-    SWOOLE_VERSION=4.2.7 \
+    SWOOLE_VERSION=4.2.8 \
     CPHALCON_VERSION=3.4.1 \
     DOCKER_ENVIRONMENT=true \
     #  install and remove building packages
