@@ -16,8 +16,7 @@ LABEL maintainer="limx <limingxin@swoft.org>" version="1.0"
 ##
 # ---------- env settings ----------
 ##
-ENV HIREDIS_VERSION=0.13.3 \
-    SWOOLE_VERSION=4.2.8 \
+ENV SWOOLE_VERSION=4.2.8 \
     CPHALCON_VERSION=3.4.1 \
     DOCKER_ENVIRONMENT=true \
     #  install and remove building packages
@@ -28,7 +27,6 @@ ENV HIREDIS_VERSION=0.13.3 \
 ##
 RUN set -ex \
         && cd /tmp \
-        && curl -SL "https://github.com/redis/hiredis/archive/v${HIREDIS_VERSION}.tar.gz" -o hiredis.tar.gz \
         && curl -SL "https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz" -o swoole.tar.gz \
         && curl -SL "https://github.com/phalcon/cphalcon/archive/v${CPHALCON_VERSION}.zip" -o cphalcon.zip \
         && ls -alh \
@@ -46,11 +44,6 @@ RUN set -ex \
             && echo "extension=phalcon.so" > /etc/php7/conf.d/phalcon.ini \
         ) \
         && rm -r cphalcon-${CPHALCON_VERSION} \
-        # hiredis - redis C client, provide async operate support for Swoole
-        && cd /tmp \
-        && tar -zxvf hiredis.tar.gz \
-        && cd hiredis-${HIREDIS_VERSION} \
-        && make -j && make install \
         # php extension: swoole
         && cd /tmp \
         && mkdir -p swoole \
