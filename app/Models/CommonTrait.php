@@ -28,7 +28,8 @@ trait CommonTrait
 
     public function deleteModel()
     {
-        $res = parent::delete()->getResult();
+        $event = bean(Event::class);
+        $res = $event->delete($this);
         // 重置缓存
         ModelCacheManager::delete($this);
         return $res;
