@@ -12,7 +12,6 @@ namespace App\Core\RpcServer;
 use App\Core\Logger\ThrowableLogger;
 use App\Exception\HttpServerException;
 use Swoft\Contract\DispatcherInterface;
-use Swoft\Rpc\Server\ServiceDispatcher;
 use Swoft\App;
 use Swoft\Core\RequestHandler;
 use Swoft\Event\AppEvent;

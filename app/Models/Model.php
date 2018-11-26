@@ -12,7 +12,6 @@ namespace App\Models;
 
 use Swoft\Db\Model as SwoftModel;
 use Swoftx\Db\Entity\QueryCacheable;
-use Swoftx\Db\Entity\UpdateWithResultCacheable;
 
 class Model extends SwoftModel
 {

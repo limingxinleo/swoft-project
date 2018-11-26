@@ -1,13 +1,14 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: limx
- * Date: 2018/11/26
- * Time: 9:25 PM
+ * This file is part of Swoft.
+ *
+ * @link     https://swoft.org
+ * @document https://doc.swoft.org
+ * @contact  limingxin@swoft.org
+ * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
  */
 
 namespace App\Core\Constants;
-
 
 class Swoft
 {

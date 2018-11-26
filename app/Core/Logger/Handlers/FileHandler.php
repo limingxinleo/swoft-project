@@ -88,7 +88,7 @@ class FileHandler extends SwoftFileHandler
     {
         $fp = fopen($logFile, 'a');
         if ($fp === false) {
-            echo "Unable to append to log file: " . $this->getLogFile() . PHP_EOL;
+            echo 'Unable to append to log file: ' . $this->getLogFile() . PHP_EOL;
             return;
         }
         flock($fp, LOCK_EX);
