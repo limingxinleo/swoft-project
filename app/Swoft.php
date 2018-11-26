@@ -10,4 +10,8 @@
 
 class Swoft extends \Swoft\App
 {
+    public static function environment()
+    {
+        return static::$properties->get('env');
+    }
 }

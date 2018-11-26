@@ -9,12 +9,13 @@
  */
 namespace Swoft\Test\Cases;
 
+use App\Core\Constants\Swoft;
 use Swoft\Test\AbstractTestCase;
 
 class ExampleTest extends AbstractTestCase
 {
     public function testExample()
     {
-        $this->assertTrue(true);
+        $this->assertEquals(Swoft::APP_ENV_PROD, \Swoft::environment());
     }
 }
