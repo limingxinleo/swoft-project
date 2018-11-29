@@ -9,6 +9,7 @@
  */
 namespace App\Core\Logger\Handlers;
 
+use App\Core\Logger\Config;
 use Swoft\App;
 use Swoole\Coroutine;
 use Swoft\Log\FileHandler as SwoftFileHandler;
@@ -26,6 +27,11 @@ class FileHandler extends SwoftFileHandler
     {
         $date = date('Ymd');
         $logFile = App::getAlias("@runtime/logs/{$date}/{$this->fileName}.log");
+
+        // if ($this->isDockerEnvironment()) {
+        //     $logFile = $this->fileName === 'error' ? '/dev/stderr' : '/dev/stdout';
+        // }
+
         $this->createDir($logFile);
         return $logFile;
     }
@@ -82,11 +88,19 @@ class FileHandler extends SwoftFileHandler
     {
         $fp = fopen($logFile, 'a');
         if ($fp === false) {
-            throw new \InvalidArgumentException("Unable to append to log file: {$this->logFile}");
+            echo 'Unable to append to log file: ' . $this->getLogFile() . PHP_EOL;
+            return;
         }
         flock($fp, LOCK_EX);
         fwrite($fp, $messageText);
         flock($fp, LOCK_UN);
         fclose($fp);
+    }
+
+    protected function isDockerEnvironment()
+    {
+        $config = bean(Config::class);
+
+        return $config->isDockerEnvironment();
     }
 }

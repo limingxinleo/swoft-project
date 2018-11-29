@@ -8,10 +8,12 @@
  * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
  */
 
-class Swoft extends \Swoft\App
+namespace App\Core\Constants;
+
+class Swoft
 {
-    public static function environment()
-    {
-        return static::$properties->get('env');
-    }
+    // 项目ENV环境
+    const APP_ENV_PROD = 'prod'; // 线上环境
+
+    const APP_ENV_TEST = 'test'; // 测试环境
 }

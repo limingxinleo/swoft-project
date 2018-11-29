@@ -16,13 +16,15 @@
         "limingxinleo/swoft-constants": "^1.0",
         "limingxinleo/x-swoole-queue": "^1.2",
         "limingxinleo/swoft-aop-cacheable": "^1.1",
-        "limingxinleo/swoft-entity-cache": "^1.2",
+        "limingxinleo/swoft-entity-cache": "^1.3.4",
+        "limingxinleo/swoft-entity-event": "^1.1",
         "limingxinleo/swoft-rpc": "^1.0",
         "hiqdev/composer-config-plugin": "^0.2.5"
     },
     "require-dev": {
         "swoft/swoole-ide-helper": "dev-master",
-        "phpunit/phpunit": "^5.7"
+        "phpunit/phpunit": "^5.7",
+        "phpstan/phpstan": "^0.10.5"
     },
     "autoload": {
         "psr-4": {

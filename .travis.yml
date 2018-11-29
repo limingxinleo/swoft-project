@@ -10,9 +10,12 @@ install:
   - printf "\n" | pecl install -f redis
   
 before_script:
+  - mv .env.example .env
   - composer update --dev
 
-script: composer test
+script:
+  - ./vendor/bin/phpstan analyse app
+  - composer test
 
 cache:
   directories:

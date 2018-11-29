@@ -16,10 +16,9 @@ LABEL maintainer="limx <limingxin@swoft.org>" version="1.0"
 ##
 # ---------- env settings ----------
 ##
-ENV HIREDIS_VERSION=0.13.3 \
-    SWOOLE_VERSION=4.2.6 \
-    MONGO_VERSION=1.5.2 \
+ENV SWOOLE_VERSION=4.2.8 \
     CPHALCON_VERSION=3.4.1 \
+    DOCKER_ENVIRONMENT=true \
     #  install and remove building packages
     PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev zlib-dev"
 
@@ -28,21 +27,16 @@ ENV HIREDIS_VERSION=0.13.3 \
 ##
 RUN set -ex \
         && cd /tmp \
-        && curl -SL "https://github.com/redis/hiredis/archive/v${HIREDIS_VERSION}.tar.gz" -o hiredis.tar.gz \
         && curl -SL "https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz" -o swoole.tar.gz \
-        && curl -SL "http://pecl.php.net/get/mongodb-${MONGO_VERSION}.tgz" -o mongodb.tgz \
         && curl -SL "https://github.com/phalcon/cphalcon/archive/v${CPHALCON_VERSION}.zip" -o cphalcon.zip \
         && ls -alh \
         && apk update \
         # for swoole extension libaio linux-headers
-        && apk add --no-cache libstdc++ openssl php7-xml php7-pcntl git bash \
+        && apk add --no-cache libstdc++ openssl php7-xml php7-xmlreader php7-xmlwriter php7-pcntl git bash \
         && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev \
-        # php extension: mongodb
-        && pecl install mongodb.tgz \
-        && echo "extension=mongodb.so" > /etc/php7/conf.d/mongodb.ini \
         # php extension: phalcon
         && cd /tmp \
-        && unzip cphalcon.zip \
+        && unzip -q cphalcon.zip \
         && rm cphalcon.zip \
         && ( \
             cd cphalcon-${CPHALCON_VERSION}/build \
@@ -50,11 +44,6 @@ RUN set -ex \
             && echo "extension=phalcon.so" > /etc/php7/conf.d/phalcon.ini \
         ) \
         && rm -r cphalcon-${CPHALCON_VERSION} \
-        # hiredis - redis C client, provide async operate support for Swoole
-        && cd /tmp \
-        && tar -zxvf hiredis.tar.gz \
-        && cd hiredis-${HIREDIS_VERSION} \
-        && make -j && make install \
         # php extension: swoole
         && cd /tmp \
         && mkdir -p swoole \
@@ -64,11 +53,12 @@ RUN set -ex \
             cd swoole \
             && phpize \
             && ./configure --enable-mysqlnd --enable-openssl \
-            && make -j$(nproc) && make install \
+            && make -s -j$(nproc) && make install \
         ) \
         && rm -r swoole \
         && echo "extension=swoole.so" > /etc/php7/conf.d/swoole.ini \
         && php -v \
+        && php -m \
         # ---------- clear works ----------
         && apk del .build-deps \
         && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
@@ -79,14 +69,14 @@ RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
     && composer self-update --clean-backups
 
-COPY . /opt/www/swoft
+COPY . /opt/www
 
-WORKDIR /opt/www/swoft
+WORKDIR /opt/www
 
 RUN composer install --no-dev \
     && composer dump-autoload -o \
-    && php /opt/www/swoft/bin/swoft app:init
+    && php /opt/www/bin/swoft app:init
 
 EXPOSE 8080 8099
 
-ENTRYPOINT ["php", "/opt/www/swoft/bin/swoft", "start"]
+ENTRYPOINT ["php", "/opt/www/bin/swoft", "start"]
