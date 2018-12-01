@@ -71,9 +71,13 @@ class FileHandler extends SwoftFileHandler
     protected function coWrite(string $logFile, string $messageText)
     {
         go(function () use ($logFile, $messageText) {
-            $res = Coroutine::writeFile($logFile, $messageText, FILE_APPEND);
-            if ($res === false) {
-                throw new \InvalidArgumentException("Unable to append to log file: {$this->logFile}");
+            try {
+                $res = Coroutine::writeFile($logFile, $messageText, FILE_APPEND);
+                if ($res === false) {
+                    throw new \InvalidArgumentException("Unable to append to log file: {$this->fileName}");
+                }
+            } catch (\Throwable $ex) {
+                echo $ex->getMessage() . PHP_EOL;
             }
         });
     }
@@ -88,7 +92,7 @@ class FileHandler extends SwoftFileHandler
     {
         $fp = fopen($logFile, 'a');
         if ($fp === false) {
-            echo 'Unable to append to log file: ' . $this->getLogFile() . PHP_EOL;
+            echo 'Unable to append to log file: ' . $this->fileName . PHP_EOL;
             return;
         }
         flock($fp, LOCK_EX);
