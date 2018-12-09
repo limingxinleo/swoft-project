@@ -16,8 +16,7 @@ LABEL maintainer="limx <limingxin@swoft.org>" version="1.0"
 ##
 # ---------- env settings ----------
 ##
-ENV SWOOLE_VERSION=4.2.8 \
-    CPHALCON_VERSION=3.4.1 \
+ENV SWOOLE_VERSION=4.2.9 \
     DOCKER_ENVIRONMENT=true \
     #  install and remove building packages
     PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev zlib-dev"
@@ -28,22 +27,11 @@ ENV SWOOLE_VERSION=4.2.8 \
 RUN set -ex \
         && cd /tmp \
         && curl -SL "https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz" -o swoole.tar.gz \
-        && curl -SL "https://github.com/phalcon/cphalcon/archive/v${CPHALCON_VERSION}.zip" -o cphalcon.zip \
         && ls -alh \
         && apk update \
         # for swoole extension libaio linux-headers
         && apk add --no-cache libstdc++ openssl php7-xml php7-xmlreader php7-xmlwriter php7-pcntl git bash \
         && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev \
-        # php extension: phalcon
-        && cd /tmp \
-        && unzip -q cphalcon.zip \
-        && rm cphalcon.zip \
-        && ( \
-            cd cphalcon-${CPHALCON_VERSION}/build \
-            && ./install \
-            && echo "extension=phalcon.so" > /etc/php7/conf.d/phalcon.ini \
-        ) \
-        && rm -r cphalcon-${CPHALCON_VERSION} \
         # php extension: swoole
         && cd /tmp \
         && mkdir -p swoole \
