@@ -21,6 +21,10 @@ return [
         [
             'name' => 'Documentation',
             'link' => 'http://doc.swoft.org',
+        ],
+        [
+            'name' => 'Skeleton',
+            'link' => 'https://github.com/limingxinleo/swoft-project',
         ]
     ],
 ];

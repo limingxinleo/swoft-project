@@ -22,7 +22,7 @@ $config = [
         ],
     ],
     'lineFormatter' => [
-        'class' => \Monolog\Formatter\LineFormatter::class,
+        'class' => \Swoft\Log\Formatter\LineFormatter::class,
         'allowInlineLineBreaks' => true,
     ],
 ];

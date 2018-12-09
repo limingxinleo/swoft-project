@@ -17,6 +17,8 @@ use Swoft\Http\Server\Bean\Annotation\RequestMethod;
 use Swoft\View\Bean\Annotation\View;
 use Swoft\Http\Message\Server\Response;
 use Swoft\Http\Message\Server\Request;
+use Swoft\Bean\Annotation\Enum;
+use Swoft\Bean\Annotation\ValidatorFrom;
 
 /**
  * Class IndexController
@@ -26,13 +28,14 @@ use Swoft\Http\Message\Server\Request;
 class IndexController extends BaseController
 {
     /**
-     * @RequestMapping(route="/", method={RequestMethod::GET,RequestMethod::POST})
+     * @RequestMapping(route="/", method={RequestMethod::GET})
+     * @Enum(from=ValidatorFrom::GET, name="type", values={0,1}, default=0)
      */
     public function index(Request $request): Response
     {
         $data = config('message');
 
-        if ($request->getMethod() === 'POST') {
+        if ($request->input('type') === 0) {
             return $this->response->success($data);
         }
         return view('index/index', $data);
