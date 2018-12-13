@@ -1,0 +1,30 @@
+# usermod -aG docker gitlab-runner
+
+stages:
+  - build
+  - deploy
+
+variables:
+  PROJECT_NAME: swoft
+  REGISTRY_URL: registry-docker.org
+
+build_docker:
+  stage: build
+  script:
+    - docker build . -t $PROJECT_NAME
+    - docker tag $PROJECT_NAME $REGISTRY_URL/$PROJECT_NAME:$CI_COMMIT_REF_NAME
+    - docker push $REGISTRY_URL/$PROJECT_NAME:$CI_COMMIT_REF_NAME
+  only:
+    - tags
+    - master
+  tags:
+    - prod
+
+deploy_docker:
+  stage: deploy
+  script:
+    - docker stack deploy -c deploy.yml $PROJECT_NAME
+  only:
+    - tags
+  tags:
+    - prod

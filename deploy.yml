@@ -1,0 +1,26 @@
+version: '3.7'
+services:
+  meditation:
+    image: $REGISTRY_URL/$PROJECT_NAME:$CI_COMMIT_REF_NAME
+    environment:
+      - "APP_ENV=prod"
+    ports:
+      - 8080:8080
+      - 8099:8099
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+    networks:
+      - swoft_net
+    configs:
+      - source: swoft_env
+        target: /opt/www/.env
+configs:
+  swoft_env:
+    external: true
+networks:
+  swoft_net:
+    external: true
