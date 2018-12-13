@@ -1,4 +1,11 @@
-# usermod -aG docker gitlab-runner
+# @gitlab
+# ------------------------------------------------------------------------------------
+# @link https://docs.gitlab.com/ee/ci/variables/README.html       Gitlab 默认参数地址
+# @link https://docs.gitlab.com/runner/install/                   Gitlab Runner 安装文档
+# @link https://hub.docker.com/r/gitlab/gitlab-ce/
+# ------------------------------------------------------------------------------------
+# @help gitlab-runner无法调用docker命令时，为gitlab-runner增加权限 usermod -aG docker gitlab-runner
+# @help gitlab-runner调用docker push无权限时，可以 su gitlab-runner \ docker login
 
 stages:
   - build
