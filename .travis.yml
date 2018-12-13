@@ -1,17 +1,35 @@
 language: php
 
+sudo: required
+
+env:
+  SW_VERSION: 4.2.9
+
 php:
   - 7.1
   - 7.2
 
+services:
+  - mysql
+  - redis
+  - docker
+
+before_install:
+  - export PHP_MAJOR="$(`phpenv which php` -r 'echo phpversion();' | cut -d '.' -f 1)"
+  - export PHP_MINOR="$(`phpenv which php` -r 'echo phpversion();' | cut -d '.' -f 2)"
+  - echo $PHP_MAJOR
+  - echo $PHP_MINOR
+
 install:
-  - wget https://github.com/redis/hiredis/archive/v0.13.3.tar.gz -O hiredis.tar.gz && mkdir -p hiredis && tar -xf hiredis.tar.gz -C hiredis --strip-components=1 && cd hiredis && sudo make -j$(nproc) && sudo make install && sudo ldconfig && cd ..
-  - printf "\n" | pecl install -f swoole
-  - printf "\n" | pecl install -f redis
-  
+  - cd $TRAVIS_BUILD_DIR
+  - bash test/install_swoole.sh
+  - phpenv config-rm xdebug.ini || echo "xdebug not available"
+  - phpenv config-add test/ci.ini
+
 before_script:
+  - cd $TRAVIS_BUILD_DIR
   - mv .env.example .env
-  - composer update --dev
+  - composer update -o
 
 script:
   - ./vendor/bin/phpstan analyse app
