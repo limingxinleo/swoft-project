@@ -13,6 +13,10 @@ services:
         condition: on-failure
         delay: 5s
         max_attempts: 5
+      update_config:
+        parallelism: 2
+        delay: 5s
+        order: start-first
     networks:
       - swoft_net
     configs:
