@@ -30,7 +30,7 @@ build_docker:
 deploy_docker:
   stage: deploy
   script:
-    - docker stack deploy -c deploy.yml $PROJECT_NAME
+    - docker stack deploy -c deploy.yml --with-registry-auth $PROJECT_NAME
   only:
     - tags
   tags:
