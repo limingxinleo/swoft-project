@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  meditation:
+  swoft:
     image: $REGISTRY_URL/$PROJECT_NAME:$CI_COMMIT_REF_NAME
     environment:
       - "APP_ENV=prod"
