@@ -15,7 +15,7 @@ LABEL maintainer="limx <limingxin@swoft.org>" version="1.0"
 ##
 # ---------- env settings ----------
 ##
-ENV SWOOLE_VERSION=4.2.9 \
+ENV SWOOLE_VERSION=4.2.10 \
     DOCKER_ENVIRONMENT=true \
     #  install and remove building packages
     PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev zlib-dev"
