@@ -20,41 +20,47 @@ ENV SWOOLE_VERSION=4.2.9 \
     #  install and remove building packages
     PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev zlib-dev"
 
-##
-# install php extensions
-##
+# update
 RUN set -ex \
-        && cd /tmp \
-        && curl -SL "https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz" -o swoole.tar.gz \
-        && ls -alh \
-        && apk update \
-        # for swoole extension libaio linux-headers
-        && apk add --no-cache libstdc++ openssl php7-xml php7-xmlreader php7-xmlwriter php7-pcntl git bash \
-        && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev \
-        # php extension: swoole
-        && cd /tmp \
-        && mkdir -p swoole \
-        && tar -xf swoole.tar.gz -C swoole --strip-components=1 \
-        && rm swoole.tar.gz \
-        && ( \
-            cd swoole \
-            && phpize \
-            && ./configure --enable-mysqlnd --enable-openssl \
-            && make -s -j$(nproc) && make install \
-        ) \
-        && rm -r swoole \
-        && echo "extension=swoole.so" > /etc/php7/conf.d/swoole.ini \
-        && php -v \
-        && php -m \
-        # ---------- clear works ----------
-        && apk del .build-deps \
-        && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
-        && echo -e "\033[42;37m Build Completed :).\033[0m\n"
+    && apk update \
+    # for swoole extension libaio linux-headers
+    && apk add --no-cache libstdc++ openssl php7-xml php7-xmlreader php7-xmlwriter php7-pcntl git bash \
+    && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev
 
-# 安装composer
-RUN curl -sS https://getcomposer.org/installer | php \
+# download
+RUN set -ex \
+    && cd /tmp \
+    && curl -SL "https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz" -o swoole.tar.gz \
+    && ls -alh
+
+# php extension:swoole
+RUN set -ex \
+    && cd /tmp \
+    && mkdir -p swoole \
+    && tar -xf swoole.tar.gz -C swoole --strip-components=1 \
+    && ( \
+        cd swoole \
+        && phpize \
+        && ./configure --enable-mysqlnd --enable-openssl \
+        && make -s -j$(nproc) && make install \
+    ) \
+    && echo "extension=swoole.so" > /etc/php7/conf.d/swoole.ini
+
+# install composer
+RUN set -ex \
+    && cd /tmp \
+    && curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
     && composer self-update --clean-backups
+
+# clear
+RUN set -ex \
+    && php -v \
+    && php -m \
+    # ---------- clear works ----------
+    && apk del .build-deps \
+    && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
+    && echo -e "\033[42;37m Build Completed :).\033[0m\n"
 
 COPY . /opt/www
 
