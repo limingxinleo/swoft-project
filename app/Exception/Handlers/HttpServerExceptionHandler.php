@@ -11,16 +11,16 @@
 namespace App\Exception\Handlers;
 
 use App\Core\Logger\ThrowableLogger;
-use Swoft\Bean\Annotation\Inject;
+use App\Exception\HttpServerException;
 use Swoft\Bean\Annotation\ExceptionHandler;
 use Swoft\Bean\Annotation\Handler;
+use Swoft\Bean\Annotation\Inject;
 use Swoft\Http\Message\Server\Response;
-use App\Exception\HttpServerException;
 
 /**
  * the handler of http server exception
  *
- * @ExceptionHandler()
+ * @ExceptionHandler
  * @uses      Handler
  * @version   2018年01月14日
  * @author    stelin <phpcrazy@126.com>
@@ -31,7 +31,7 @@ class HttpServerExceptionHandler
 {
     /**
      * 注入自定义Response
-     * @Inject()
+     * @Inject
      *
      * @var \App\Core\HttpServer\Response
      */

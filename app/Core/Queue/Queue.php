@@ -54,6 +54,24 @@ class Queue extends Job
         return $redis->lLen($this->queueKey);
     }
 
+    public function push(JobInterface $job)
+    {
+        $redis = bean(Redis::class);
+        $packer = $this->getPacker();
+        return $redis->lpush($this->queueKey, $packer->pack($job));
+    }
+
+    public function delay(JobInterface $job, $time = 0)
+    {
+        if (empty($time)) {
+            return $this->push($job);
+        }
+
+        $redis = bean(Redis::class);
+        $packer = $this->getPacker();
+        return $redis->zAdd($this->delayKey, time() + $time, $packer->pack($job));
+    }
+
     /**
      * @return array
      * @throws RedisException
@@ -80,23 +98,5 @@ class Queue extends Job
         $db = $config->getDb();
 
         return [$host, $port, $auth, $db];
-    }
-
-    public function push(JobInterface $job)
-    {
-        $redis = bean(Redis::class);
-        $packer = $this->getPacker();
-        return $redis->lpush($this->queueKey, $packer->pack($job));
-    }
-
-    public function delay(JobInterface $job, $time = 0)
-    {
-        if (empty($time)) {
-            return $this->push($job);
-        }
-
-        $redis = bean(Redis::class);
-        $packer = $this->getPacker();
-        return $redis->zAdd($this->delayKey, time() + $time, $packer->pack($job));
     }
 }

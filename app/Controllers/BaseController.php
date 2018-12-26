@@ -10,8 +10,8 @@
 
 namespace App\Controllers;
 
-use Swoft\Bean\Annotation\Inject;
 use App\Core\HttpServer\Response;
+use Swoft\Bean\Annotation\Inject;
 
 /**
  * Class BaseController
@@ -21,7 +21,7 @@ class BaseController
 {
     /**
      * 注入自定义Response
-     * @Inject()
+     * @Inject
      *
      * @var Response
      */

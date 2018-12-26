@@ -13,10 +13,10 @@ namespace Swoft\Test;
 use PHPUnit\Framework\TestCase;
 use Swoft\App;
 use Swoft\Helper\ArrayHelper;
-use Swoft\Testing\SwooleRequest as TestSwooleRequest;
-use Swoft\Testing\SwooleResponse as TestSwooleResponse;
 use Swoft\Http\Message\Testing\Web\Request;
 use Swoft\Http\Message\Testing\Web\Response;
+use Swoft\Testing\SwooleRequest as TestSwooleRequest;
+use Swoft\Testing\SwooleResponse as TestSwooleResponse;
 
 /**
  * Class AbstractTestCase

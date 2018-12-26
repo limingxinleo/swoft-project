@@ -11,8 +11,8 @@ namespace App\Core\Logger\Handlers;
 
 use App\Core\Logger\Config;
 use Swoft\App;
-use Swoole\Coroutine;
 use Swoft\Log\FileHandler as SwoftFileHandler;
+use Swoole\Coroutine;
 
 /**
  * 按照日期分目录的日志Handler

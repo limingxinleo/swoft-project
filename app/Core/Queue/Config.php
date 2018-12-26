@@ -15,7 +15,7 @@ use Swoft\Bean\Annotation\Value;
 
 /**
  * Class Config
- * @Bean()
+ * @Bean
  * @package App\Core\Queue
  */
 class Config

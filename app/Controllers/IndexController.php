@@ -10,13 +10,15 @@
 
 namespace App\Controllers;
 
+use App\Core\Constants\ErrorCode;
+use App\Exception\HttpServerException;
 use Swoft\App;
+use Swoft\Http\Message\Server\Request;
+use Swoft\Http\Message\Server\Response;
 use Swoft\Http\Server\Bean\Annotation\Controller;
 use Swoft\Http\Server\Bean\Annotation\RequestMapping;
 use Swoft\Http\Server\Bean\Annotation\RequestMethod;
 use Swoft\View\Bean\Annotation\View;
-use Swoft\Http\Message\Server\Response;
-use Swoft\Http\Message\Server\Request;
 
 /**
  * Class IndexController
@@ -26,11 +28,13 @@ use Swoft\Http\Message\Server\Request;
 class IndexController extends BaseController
 {
     /**
-     * @RequestMapping(route="/", method={RequestMethod::GET,RequestMethod::POST})
+     * @RequestMapping(route="/", method={RequestMethod::GET, RequestMethod::POST})
      */
     public function index(Request $request): Response
     {
         $data = config('message');
+
+        throw new HttpServerException(ErrorCode::VALIDATE_FAIL);
 
         if ($request->getMethod() === 'POST') {
             return $this->response->success($data);

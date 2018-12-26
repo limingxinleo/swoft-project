@@ -16,7 +16,7 @@ use Swoft\Core\RequestContext;
 use Swoft\Http\Message\Server\Response as HttpServerResponse;
 
 /**
- * @Bean()
+ * @Bean
  * Class Response
  * @author  limx
  * @package App\Core\HttpServer

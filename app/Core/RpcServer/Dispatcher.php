@@ -11,8 +11,8 @@ namespace App\Core\RpcServer;
 
 use App\Core\Logger\ThrowableLogger;
 use App\Exception\HttpServerException;
-use Swoft\Contract\DispatcherInterface;
 use Swoft\App;
+use Swoft\Contract\DispatcherInterface;
 use Swoft\Core\RequestHandler;
 use Swoft\Event\AppEvent;
 use Swoft\Helper\ResponseHelper;
@@ -124,6 +124,14 @@ class Dispatcher implements DispatcherInterface
     }
 
     /**
+     * @return array
+     */
+    public function getMiddlewares(): array
+    {
+        return $this->middlewares;
+    }
+
+    /**
      * @param \Swoole\Server $server
      * @param int            $fd
      * @param int            $fromid
@@ -138,13 +146,5 @@ class Dispatcher implements DispatcherInterface
             ->withAttribute(PackerMiddleware::ATTRIBUTE_FD, $fd)
             ->withAttribute(PackerMiddleware::ATTRIBUTE_FROMID, $fromid)
             ->withAttribute(PackerMiddleware::ATTRIBUTE_DATA, $data);
-    }
-
-    /**
-     * @return array
-     */
-    public function getMiddlewares(): array
-    {
-        return $this->middlewares;
     }
 }

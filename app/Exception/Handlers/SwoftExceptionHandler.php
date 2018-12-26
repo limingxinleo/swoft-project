@@ -12,26 +12,26 @@ namespace App\Exception\Handlers;
 
 use App\Core\Constants\ErrorCode;
 use App\Core\Logger\ThrowableLogger;
+use App\Exception\NoContentException;
+use Exception;
+use Swoft\Bean\Annotation\ExceptionHandler;
 use Swoft\Bean\Annotation\Handler;
+use Swoft\Bean\Annotation\Inject;
+use Swoft\Exception\BadMethodCallException;
+use Swoft\Exception\RuntimeException;
+use Swoft\Exception\ValidatorException;
 use Swoft\Helper\JsonHelper;
 use Swoft\Http\Message\Server\Request;
 use Swoft\Http\Message\Server\Response;
-use Swoft\Bean\Annotation\Inject;
-use Swoft\Bean\Annotation\ExceptionHandler;
-use Exception;
-use Swoft\Exception\RuntimeException;
-use Swoft\Exception\BadMethodCallException;
-use Swoft\Exception\ValidatorException;
 use Swoft\Http\Server\Exception\BadRequestException;
 use Swoft\Http\Server\Exception\NotAcceptableException;
 use Swoft\Http\Server\Exception\RouteNotFoundException;
 use Swoft\Rpc\Exception\RpcStatusException;
-use App\Exception\NoContentException;
 
 /**
  * the handler of global exception
  *
- * @ExceptionHandler()
+ * @ExceptionHandler
  * @uses      Handler
  * @version   2018年01月14日
  * @author    stelin <phpcrazy@126.com>
@@ -42,7 +42,7 @@ class SwoftExceptionHandler
 {
     /**
      * 注入自定义Response
-     * @Inject()
+     * @Inject
      *
      * @var \App\Core\HttpServer\Response
      */

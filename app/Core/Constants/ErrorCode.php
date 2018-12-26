@@ -21,17 +21,17 @@ class ErrorCode extends Constants
     const SUCCESS = 0;
 
     /**
-     * @Message('服务内部错误')
+     * @Message("服务内部错误")
      */
     const SERVER_ERROR = 500;
 
     /**
-     * @Message('参数验证失败')
+     * @Message("参数验证失败")
      */
     const VALIDATE_FAIL = 600;
 
     /**
-     * @Message('参数错误')
+     * @Message("参数错误")
      */
     const PARAMS_ERROR = 1000;
 }

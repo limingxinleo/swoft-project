@@ -10,10 +10,10 @@
 namespace App\Core\Logger;
 
 use Swoft\App;
-use Swoft\Log\Logger;
-use Throwable;
 use Swoft\Bean\Annotation\Bean;
 use Swoft\Bean\Annotation\Inject;
+use Swoft\Log\Logger;
+use Throwable;
 
 /**
  * Class Logger
@@ -27,6 +27,18 @@ class ThrowableLogger
      * @var Logger
      */
     protected $logger;
+
+    public function __call($name, $arguments)
+    {
+        if (isset($arguments[0]) && $arguments[0] instanceof Throwable) {
+            $this->logger->$name($this->format($arguments[0]));
+        }
+    }
+
+    public function getLogger()
+    {
+        return $this->logger;
+    }
 
     /**
      * 格式化 $throwable
@@ -45,17 +57,5 @@ class ThrowableLogger
             $throwable->getLine(),
             $throwable->getTraceAsString()
         );
-    }
-
-    public function __call($name, $arguments)
-    {
-        if (isset($arguments[0]) && $arguments[0] instanceof Throwable) {
-            $this->logger->$name($this->format($arguments[0]));
-        }
-    }
-
-    public function getLogger()
-    {
-        return $this->logger;
     }
 }
